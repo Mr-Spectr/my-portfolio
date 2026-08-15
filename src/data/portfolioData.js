@@ -4,7 +4,7 @@ export const PORTFOLIO_DATA = {
     title: "AI & Data Science Engineer | Full-Stack Developer",
     institution: "Nitte Meenakshi Institute of Technology & IIT Madras",
     tagline: "Building Enterprise Agentic AI platforms, RAG pipelines, high-performance FastAPI backends, and data-driven intelligence solutions.",
-    avatar: "/abhay_avatar.png",
+    avatar: "abhay_avatar.png",
     coverBadge: "Open for AI/ML Roles & Software Engineering Opportunities",
     email: "workwithabhay3006@gmail.com",
     phone: "+91 7411202198",

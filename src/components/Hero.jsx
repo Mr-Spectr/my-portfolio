@@ -8,6 +8,7 @@ import {
   BookOpen 
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, TwitterIcon } from './SocialIcons';
+import abhayAvatar from '../assets/abhay_avatar.png';
 
 export default function Hero({ profile, onOpenCv }) {
   return (
@@ -95,7 +96,7 @@ export default function Hero({ profile, onOpenCv }) {
           <div className="hero-avatar-wrapper">
             <div className="avatar-glass-card">
               <div className="avatar-frame">
-                <img src={profile.avatar} alt={profile.name} className="avatar-img" />
+                <img src={profile.avatar && profile.avatar.startsWith('http') ? profile.avatar : abhayAvatar} alt={profile.name} className="avatar-img" />
                 <div className="avatar-glow-ring"></div>
               </div>
 
