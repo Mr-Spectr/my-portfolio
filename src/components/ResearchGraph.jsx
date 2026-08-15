@@ -15,7 +15,8 @@ export default function ResearchGraph({ graphData, researchDomains }) {
 
     // Handle high DPI display
     const dpr = window.devicePixelRatio || 1;
-    const width = canvas.parentElement.clientWidth;
+    const parent = canvas.parentElement;
+    const width = parent && parent.clientWidth ? parent.clientWidth : 800;
     const height = 480;
 
     canvas.width = width * dpr;
@@ -184,7 +185,7 @@ export default function ResearchGraph({ graphData, researchDomains }) {
                   <Sparkles size={16} className="node-sparkle" />
                   <h4>{selectedNode.label}</h4>
                 </div>
-                <p>Primary focus topic in Alex Rivera's Lab.</p>
+                <p>Primary focus domain in Abhay Rawat's research portfolio.</p>
                 <div className="node-stats">
                   <span className="node-stat-pill">{selectedNode.val}</span>
                   <span className="node-stat-pill">Active Project</span>
