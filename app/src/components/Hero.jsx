@@ -86,12 +86,12 @@ export default function Hero({ profile }) {
             </div>
           </div>
 
-          {/* Right Column: Researcher Profile Avatar Card */}
+          {/* Right Column: Full-portrait profile card */}
           <div className="hero-avatar-wrapper">
             <div className="avatar-glass-card">
-              <div className="avatar-frame">
+              <div className="avatar-portrait">
                 <img src={profile.avatar} alt={profile.name} className="avatar-img" />
-                <div className="avatar-glow-ring"></div>
+                <div className="avatar-image-wash"></div>
               </div>
 
               <div className="avatar-card-info">
@@ -264,16 +264,16 @@ export default function Hero({ profile }) {
           justify-content: center;
         }
         .avatar-glass-card {
-          background: var(--bg-card);
-          backdrop-filter: blur(20px);
+          background: #060c19;
           border: 1px solid var(--border-glass);
           border-radius: var(--radius-xl);
-          padding: 2rem;
+          overflow: hidden;
           text-align: center;
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
           position: relative;
           width: 100%;
           max-width: 380px;
+          min-height: 470px;
           transition: var(--transition-normal);
         }
         .avatar-glass-card:hover {
@@ -281,34 +281,44 @@ export default function Hero({ profile }) {
           transform: translateY(-5px);
           box-shadow: 0 25px 50px -10px var(--primary-glow);
         }
-        .avatar-frame {
+        .avatar-portrait {
           position: relative;
-          width: 170px;
-          height: 170px;
-          margin: 0 auto 1.5rem;
-          border-radius: 50%;
-          padding: 6px;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-          animation: avatarFloat 6s ease-in-out infinite;
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #071126;
         }
         .avatar-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 50%;
-          border: 3px solid var(--bg-dark);
+          object-position: center 28%;
+          transform: scaleX(-1) scale(1.035);
+          filter: saturate(1.06) contrast(1.04);
+          transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .avatar-glow-ring {
+        .avatar-image-wash {
           position: absolute;
-          inset: -4px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-          filter: blur(12px);
-          opacity: 0.5;
-          z-index: -1;
-          animation: glowPulse 3s ease-in-out infinite;
+          inset: 0;
+          pointer-events: none;
+          background:
+            linear-gradient(180deg, rgba(5, 9, 20, 0.08) 26%, rgba(5, 9, 20, 0.4) 50%, rgba(5, 9, 20, 0.96) 100%),
+            linear-gradient(135deg, rgba(99, 102, 241, 0.2), transparent 46%);
+        }
+        .avatar-glass-card:hover .avatar-img {
+          transform: scaleX(-1) scale(1.1);
         }
         .avatar-card-info {
+          position: absolute;
+          z-index: 1;
+          left: 1rem;
+          right: 1rem;
+          bottom: 1rem;
+          padding: 1rem 0.8rem 0.9rem;
+          border: 1px solid rgba(148, 163, 184, 0.2);
+          border-radius: 16px;
+          background: rgba(8, 14, 31, 0.62);
+          backdrop-filter: blur(12px);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -339,8 +349,8 @@ export default function Hero({ profile }) {
         }
         .mini-tag {
           font-size: 0.75rem;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid var(--border-glass);
+          background: rgba(15, 23, 42, 0.7);
+          border: 1px solid rgba(148, 163, 184, 0.2);
           padding: 3px 8px;
           border-radius: 6px;
           color: var(--text-muted);
@@ -349,16 +359,8 @@ export default function Hero({ profile }) {
           from { transform: translate3d(0, 0, 0) scale(1); }
           to { transform: translate3d(55px, 34px, 0) scale(1.14); }
         }
-        @keyframes avatarFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
-        @keyframes glowPulse {
-          0%, 100% { opacity: 0.35; transform: scale(0.96); }
-          50% { opacity: 0.75; transform: scale(1.08); }
-        }
         @media (prefers-reduced-motion: reduce) {
-          .glow-orb, .avatar-frame, .avatar-glow-ring { animation: none; }
+          .glow-orb, .avatar-img { animation: none; transition: none; }
         }
 
         @media (max-width: 992px) {
@@ -371,6 +373,10 @@ export default function Hero({ profile }) {
           }
           .hero-avatar-wrapper {
             order: -1;
+          }
+          .avatar-glass-card {
+            max-width: 430px;
+            min-height: 450px;
           }
         }
       `}</style>

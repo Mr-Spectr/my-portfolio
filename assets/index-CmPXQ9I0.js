@@ -188,7 +188,7 @@ Error generating stack: `+e.message+`
           .nav-actions .btn-sm { padding: 8px 11px; }
           .nav-actions .btn-sm span { display: none; }
         }
-      `})]})}function Pe({size:e=18,className:t=``}){return(0,A.jsxs)(`svg`,{width:e,height:e,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,className:t,children:[(0,A.jsx)(`path`,{d:`M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4`}),(0,A.jsx)(`path`,{d:`M9 18c-4.51 2-5-2-7-2`})]})}function Fe({size:e=18,className:t=``}){return(0,A.jsxs)(`svg`,{width:e,height:e,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,className:t,children:[(0,A.jsx)(`path`,{d:`M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z`}),(0,A.jsx)(`rect`,{x:`2`,y:`9`,width:`4`,height:`12`}),(0,A.jsx)(`circle`,{cx:`4`,cy:`4`,r:`2`})]})}function Ie({profile:e}){return(0,A.jsxs)(`section`,{className:`hero-section`,children:[(0,A.jsxs)(`div`,{className:`hero-background`,children:[(0,A.jsx)(`div`,{className:`glow-orb orb-1`}),(0,A.jsx)(`div`,{className:`glow-orb orb-2`}),(0,A.jsx)(`div`,{className:`grid-overlay`})]}),(0,A.jsxs)(`div`,{className:`hero-container`,children:[(0,A.jsx)(`div`,{className:`hero-top-badge`,children:(0,A.jsxs)(`span`,{className:`badge-pill`,children:[(0,A.jsx)(`span`,{className:`badge-glow-dot`}),e.coverBadge]})}),(0,A.jsxs)(`div`,{className:`hero-grid`,children:[(0,A.jsxs)(`div`,{className:`hero-content`,children:[(0,A.jsxs)(`h1`,{className:`hero-name`,children:[`Hello, I'm `,(0,A.jsx)(`span`,{className:`gradient-text`,children:e.name})]}),(0,A.jsx)(`h2`,{className:`hero-title`,children:e.title}),(0,A.jsxs)(`div`,{className:`hero-institution`,children:[(0,A.jsx)(ve,{size:18,className:`institution-icon`}),(0,A.jsx)(`span`,{children:e.institution})]}),(0,A.jsx)(`p`,{className:`hero-bio`,children:e.tagline}),(0,A.jsxs)(`div`,{className:`hero-meta-row`,children:[(0,A.jsxs)(`div`,{className:`meta-item`,children:[(0,A.jsx)(xe,{size:15}),(0,A.jsx)(`span`,{children:e.location})]}),(0,A.jsx)(`div`,{className:`meta-item meta-focus`,children:`AI · data · systems · mobile`})]}),(0,A.jsxs)(`div`,{className:`hero-cta-group`,children:[(0,A.jsxs)(`a`,{href:`#case-studies`,className:`btn-primary`,children:[(0,A.jsx)(ce,{size:18}),(0,A.jsx)(`span`,{children:`Explore Project Dossiers`})]}),(0,A.jsxs)(`a`,{href:`./abhay-rawat-resume.pdf`,target:`_blank`,rel:`noreferrer`,className:`btn-secondary`,children:[(0,A.jsx)(he,{size:18}),(0,A.jsx)(`span`,{children:`Download Resume`})]}),(0,A.jsxs)(`a`,{href:`#contact`,className:`btn-secondary`,children:[(0,A.jsx)(be,{size:18}),(0,A.jsx)(`span`,{children:`Start a conversation`})]})]}),(0,A.jsxs)(`div`,{className:`hero-social-row`,children:[(0,A.jsxs)(`a`,{href:e.credly,target:`_blank`,rel:`noreferrer`,className:`scholar-btn`,children:[(0,A.jsx)(ce,{size:16}),(0,A.jsx)(`span`,{children:`Credly Certifications`}),(0,A.jsx)(k,{size:12})]}),(0,A.jsxs)(`a`,{href:e.github,target:`_blank`,rel:`noreferrer`,className:`scholar-btn`,children:[(0,A.jsx)(Pe,{size:16}),(0,A.jsx)(`span`,{children:`GitHub`}),(0,A.jsx)(k,{size:12})]}),(0,A.jsxs)(`a`,{href:e.linkedin,target:`_blank`,rel:`noreferrer`,className:`scholar-btn`,children:[(0,A.jsx)(Fe,{size:16}),(0,A.jsx)(`span`,{children:`LinkedIn`}),(0,A.jsx)(k,{size:12})]})]})]}),(0,A.jsx)(`div`,{className:`hero-avatar-wrapper`,children:(0,A.jsxs)(`div`,{className:`avatar-glass-card`,children:[(0,A.jsxs)(`div`,{className:`avatar-frame`,children:[(0,A.jsx)(`img`,{src:e.avatar,alt:e.name,className:`avatar-img`}),(0,A.jsx)(`div`,{className:`avatar-glow-ring`})]}),(0,A.jsxs)(`div`,{className:`avatar-card-info`,children:[(0,A.jsx)(`div`,{className:`info-badge`,children:`NMIT & IIT Madras Scholar`}),(0,A.jsx)(`div`,{className:`info-title`,children:`Core Competencies`}),(0,A.jsxs)(`div`,{className:`info-tags`,children:[(0,A.jsx)(`span`,{className:`mini-tag`,children:`Agentic AI & RAG`}),(0,A.jsx)(`span`,{className:`mini-tag`,children:`FastAPI & Docker`}),(0,A.jsx)(`span`,{className:`mini-tag`,children:`Data Science`}),(0,A.jsx)(`span`,{className:`mini-tag`,children:`Flutter & Firebase`})]})]})]})})]})]}),(0,A.jsx)(`style`,{children:`
+      `})]})}function Pe({size:e=18,className:t=``}){return(0,A.jsxs)(`svg`,{width:e,height:e,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,className:t,children:[(0,A.jsx)(`path`,{d:`M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4`}),(0,A.jsx)(`path`,{d:`M9 18c-4.51 2-5-2-7-2`})]})}function Fe({size:e=18,className:t=``}){return(0,A.jsxs)(`svg`,{width:e,height:e,viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`,className:t,children:[(0,A.jsx)(`path`,{d:`M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z`}),(0,A.jsx)(`rect`,{x:`2`,y:`9`,width:`4`,height:`12`}),(0,A.jsx)(`circle`,{cx:`4`,cy:`4`,r:`2`})]})}function Ie({profile:e}){return(0,A.jsxs)(`section`,{className:`hero-section`,children:[(0,A.jsxs)(`div`,{className:`hero-background`,children:[(0,A.jsx)(`div`,{className:`glow-orb orb-1`}),(0,A.jsx)(`div`,{className:`glow-orb orb-2`}),(0,A.jsx)(`div`,{className:`grid-overlay`})]}),(0,A.jsxs)(`div`,{className:`hero-container`,children:[(0,A.jsx)(`div`,{className:`hero-top-badge`,children:(0,A.jsxs)(`span`,{className:`badge-pill`,children:[(0,A.jsx)(`span`,{className:`badge-glow-dot`}),e.coverBadge]})}),(0,A.jsxs)(`div`,{className:`hero-grid`,children:[(0,A.jsxs)(`div`,{className:`hero-content`,children:[(0,A.jsxs)(`h1`,{className:`hero-name`,children:[`Hello, I'm `,(0,A.jsx)(`span`,{className:`gradient-text`,children:e.name})]}),(0,A.jsx)(`h2`,{className:`hero-title`,children:e.title}),(0,A.jsxs)(`div`,{className:`hero-institution`,children:[(0,A.jsx)(ve,{size:18,className:`institution-icon`}),(0,A.jsx)(`span`,{children:e.institution})]}),(0,A.jsx)(`p`,{className:`hero-bio`,children:e.tagline}),(0,A.jsxs)(`div`,{className:`hero-meta-row`,children:[(0,A.jsxs)(`div`,{className:`meta-item`,children:[(0,A.jsx)(xe,{size:15}),(0,A.jsx)(`span`,{children:e.location})]}),(0,A.jsx)(`div`,{className:`meta-item meta-focus`,children:`AI · data · systems · mobile`})]}),(0,A.jsxs)(`div`,{className:`hero-cta-group`,children:[(0,A.jsxs)(`a`,{href:`#case-studies`,className:`btn-primary`,children:[(0,A.jsx)(ce,{size:18}),(0,A.jsx)(`span`,{children:`Explore Project Dossiers`})]}),(0,A.jsxs)(`a`,{href:`./abhay-rawat-resume.pdf`,target:`_blank`,rel:`noreferrer`,className:`btn-secondary`,children:[(0,A.jsx)(he,{size:18}),(0,A.jsx)(`span`,{children:`Download Resume`})]}),(0,A.jsxs)(`a`,{href:`#contact`,className:`btn-secondary`,children:[(0,A.jsx)(be,{size:18}),(0,A.jsx)(`span`,{children:`Start a conversation`})]})]}),(0,A.jsxs)(`div`,{className:`hero-social-row`,children:[(0,A.jsxs)(`a`,{href:e.credly,target:`_blank`,rel:`noreferrer`,className:`scholar-btn`,children:[(0,A.jsx)(ce,{size:16}),(0,A.jsx)(`span`,{children:`Credly Certifications`}),(0,A.jsx)(k,{size:12})]}),(0,A.jsxs)(`a`,{href:e.github,target:`_blank`,rel:`noreferrer`,className:`scholar-btn`,children:[(0,A.jsx)(Pe,{size:16}),(0,A.jsx)(`span`,{children:`GitHub`}),(0,A.jsx)(k,{size:12})]}),(0,A.jsxs)(`a`,{href:e.linkedin,target:`_blank`,rel:`noreferrer`,className:`scholar-btn`,children:[(0,A.jsx)(Fe,{size:16}),(0,A.jsx)(`span`,{children:`LinkedIn`}),(0,A.jsx)(k,{size:12})]})]})]}),(0,A.jsx)(`div`,{className:`hero-avatar-wrapper`,children:(0,A.jsxs)(`div`,{className:`avatar-glass-card`,children:[(0,A.jsxs)(`div`,{className:`avatar-portrait`,children:[(0,A.jsx)(`img`,{src:e.avatar,alt:e.name,className:`avatar-img`}),(0,A.jsx)(`div`,{className:`avatar-image-wash`})]}),(0,A.jsxs)(`div`,{className:`avatar-card-info`,children:[(0,A.jsx)(`div`,{className:`info-badge`,children:`NMIT & IIT Madras Scholar`}),(0,A.jsx)(`div`,{className:`info-title`,children:`Core Competencies`}),(0,A.jsxs)(`div`,{className:`info-tags`,children:[(0,A.jsx)(`span`,{className:`mini-tag`,children:`Agentic AI & RAG`}),(0,A.jsx)(`span`,{className:`mini-tag`,children:`FastAPI & Docker`}),(0,A.jsx)(`span`,{className:`mini-tag`,children:`Data Science`}),(0,A.jsx)(`span`,{className:`mini-tag`,children:`Flutter & Firebase`})]})]})]})})]})]}),(0,A.jsx)(`style`,{children:`
         .hero-section {
           position: relative;
           padding: 8.5rem 2rem 5rem;
@@ -343,16 +343,16 @@ Error generating stack: `+e.message+`
           justify-content: center;
         }
         .avatar-glass-card {
-          background: var(--bg-card);
-          backdrop-filter: blur(20px);
+          background: #060c19;
           border: 1px solid var(--border-glass);
           border-radius: var(--radius-xl);
-          padding: 2rem;
+          overflow: hidden;
           text-align: center;
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
           position: relative;
           width: 100%;
           max-width: 380px;
+          min-height: 470px;
           transition: var(--transition-normal);
         }
         .avatar-glass-card:hover {
@@ -360,34 +360,44 @@ Error generating stack: `+e.message+`
           transform: translateY(-5px);
           box-shadow: 0 25px 50px -10px var(--primary-glow);
         }
-        .avatar-frame {
+        .avatar-portrait {
           position: relative;
-          width: 170px;
-          height: 170px;
-          margin: 0 auto 1.5rem;
-          border-radius: 50%;
-          padding: 6px;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-          animation: avatarFloat 6s ease-in-out infinite;
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #071126;
         }
         .avatar-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 50%;
-          border: 3px solid var(--bg-dark);
+          object-position: center 28%;
+          transform: scaleX(-1) scale(1.035);
+          filter: saturate(1.06) contrast(1.04);
+          transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .avatar-glow-ring {
+        .avatar-image-wash {
           position: absolute;
-          inset: -4px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-          filter: blur(12px);
-          opacity: 0.5;
-          z-index: -1;
-          animation: glowPulse 3s ease-in-out infinite;
+          inset: 0;
+          pointer-events: none;
+          background:
+            linear-gradient(180deg, rgba(5, 9, 20, 0.08) 26%, rgba(5, 9, 20, 0.4) 50%, rgba(5, 9, 20, 0.96) 100%),
+            linear-gradient(135deg, rgba(99, 102, 241, 0.2), transparent 46%);
+        }
+        .avatar-glass-card:hover .avatar-img {
+          transform: scaleX(-1) scale(1.1);
         }
         .avatar-card-info {
+          position: absolute;
+          z-index: 1;
+          left: 1rem;
+          right: 1rem;
+          bottom: 1rem;
+          padding: 1rem 0.8rem 0.9rem;
+          border: 1px solid rgba(148, 163, 184, 0.2);
+          border-radius: 16px;
+          background: rgba(8, 14, 31, 0.62);
+          backdrop-filter: blur(12px);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -418,8 +428,8 @@ Error generating stack: `+e.message+`
         }
         .mini-tag {
           font-size: 0.75rem;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid var(--border-glass);
+          background: rgba(15, 23, 42, 0.7);
+          border: 1px solid rgba(148, 163, 184, 0.2);
           padding: 3px 8px;
           border-radius: 6px;
           color: var(--text-muted);
@@ -428,16 +438,8 @@ Error generating stack: `+e.message+`
           from { transform: translate3d(0, 0, 0) scale(1); }
           to { transform: translate3d(55px, 34px, 0) scale(1.14); }
         }
-        @keyframes avatarFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
-        @keyframes glowPulse {
-          0%, 100% { opacity: 0.35; transform: scale(0.96); }
-          50% { opacity: 0.75; transform: scale(1.08); }
-        }
         @media (prefers-reduced-motion: reduce) {
-          .glow-orb, .avatar-frame, .avatar-glow-ring { animation: none; }
+          .glow-orb, .avatar-img { animation: none; transition: none; }
         }
 
         @media (max-width: 992px) {
@@ -450,6 +452,10 @@ Error generating stack: `+e.message+`
           }
           .hero-avatar-wrapper {
             order: -1;
+          }
+          .avatar-glass-card {
+            max-width: 430px;
+            min-height: 450px;
           }
         }
       `})]})}function Le({metrics:e}){let t=e=>{switch(e){case`Quote`:return(0,A.jsx)(Te,{size:24});case`Award`:return(0,A.jsx)(se,{size:24});case`BookOpen`:return(0,A.jsx)(ce,{size:24});case`FileText`:return(0,A.jsx)(ge,{size:24});case`Star`:return(0,A.jsx)(Ae,{size:24});default:return(0,A.jsx)(se,{size:24})}};return(0,A.jsxs)(`section`,{className:`metrics-section`,children:[(0,A.jsx)(`div`,{className:`metrics-container`,children:(0,A.jsx)(`div`,{className:`metrics-grid`,children:e.map((e,n)=>(0,A.jsxs)(`div`,{className:`metric-card glass-card`,children:[(0,A.jsx)(`div`,{className:`metric-icon-box`,children:t(e.icon)}),(0,A.jsxs)(`div`,{className:`metric-info`,children:[(0,A.jsx)(`div`,{className:`metric-value gradient-text-accent`,children:e.value}),(0,A.jsx)(`div`,{className:`metric-label`,children:e.label}),(0,A.jsx)(`div`,{className:`metric-change`,children:e.change})]})]},n))})}),(0,A.jsx)(`style`,{children:`
