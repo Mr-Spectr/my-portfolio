@@ -4,7 +4,7 @@ export const PORTFOLIO_DATA = {
     title: 'Information Science & Data Science Student',
     institution: 'Nitte Meenakshi Institute of Technology · IIT Madras',
     tagline: 'Building trustworthy AI, data, and mobile systems—from retrieval-augmented knowledge agents to financial analytics and real-time applications.',
-    avatar: './abhay_avatar.png',
+    avatar: './abhay-profile.jpeg',
     coverBadge: 'Open to AI/ML, software engineering & research opportunities',
     email: 'workwithabhay3006@gmail.com',
     location: 'Bengaluru, India',
