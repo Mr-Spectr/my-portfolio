@@ -1,16 +1,19 @@
-# React + Vite
+# Abhay Rawat — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This repository serves Abhay Rawat’s React portfolio through GitHub Pages.
 
-Currently, two official plugins are available:
+## Deployment layout
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+GitHub Pages serves the production bundle from the repository root (`index.html`, `assets/`, and the public files). The editable React/Vite source is in [`app/`](app/).
 
-## React Compiler
+After updating the source, build it from `app/` and copy the contents of `app/dist/` to the repository root before pushing. The Vite base is relative so the bundle works at `https://mr-spectr.github.io/my-portfolio/`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```powershell
+cd app
+pnpm install
+pnpm run lint
+pnpm run build
+robocopy dist .. /E
+```
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+The public resume is available at `/abhay-rawat-resume.pdf`.
