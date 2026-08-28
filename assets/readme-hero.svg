@@ -1,0 +1,55 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Abhay Rawat - AI, Data and Systems</title>
+  <desc id="desc">A restrained dark portfolio banner with emerald and blue accents.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111F"/>
+      <stop offset="0.55" stop-color="#0A1220"/>
+      <stop offset="1" stop-color="#080D17"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="60" x2="1020" y2="270" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34D399"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-80%" width="160%" height="260%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" stroke="#8FA6C3" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="320" rx="18" fill="url(#background)"/>
+  <rect width="1200" height="320" rx="18" fill="url(#grid)"/>
+  <circle cx="1035" cy="84" r="170" fill="#0E7490" fill-opacity="0.12"/>
+  <circle cx="1110" cy="262" r="180" fill="#059669" fill-opacity="0.10"/>
+  <path d="M0 258C170 198 324 330 514 242C681 165 745 227 930 156C1041 113 1124 125 1200 104" stroke="url(#accent)" stroke-opacity="0.48" stroke-width="1.5"/>
+  <path d="M0 271C168 214 346 339 526 254C673 184 775 244 947 174C1060 128 1129 144 1200 123" stroke="#D9FBE9" stroke-opacity="0.12" stroke-width="1"/>
+
+  <g transform="translate(72 62)">
+    <rect width="84" height="84" rx="18" fill="#0C1B2B" stroke="url(#accent)" stroke-width="1.5"/>
+    <text x="42" y="54" text-anchor="middle" fill="#E7F7FF" font-family="Georgia, serif" font-size="34" font-weight="700">AR</text>
+  </g>
+
+  <g transform="translate(184 80)">
+    <text fill="#B9F6DA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" letter-spacing="2.7">PORTFOLIO / PROFILE</text>
+    <text y="62" fill="#F4F8FC" font-family="Georgia, serif" font-size="47" font-weight="700">Abhay Rawat</text>
+    <text y="103" fill="#A9BAD0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">AI &amp; DATA SCIENCE ENGINEER  •  FULL-STACK DEVELOPER</text>
+    <rect y="132" width="390" height="1" fill="url(#accent)" fill-opacity="0.8"/>
+    <text y="164" fill="#7F94AE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">AGENTIC AI  /  RAG SYSTEMS  /  DATA PRODUCTS</text>
+  </g>
+
+  <g transform="translate(925 66)" stroke="url(#accent)" fill="none" opacity="0.88">
+    <circle cx="85" cy="80" r="52" stroke-width="1.5"/>
+    <circle cx="85" cy="80" r="29" stroke-width="1" stroke-dasharray="3 7"/>
+    <path d="M85 0V24M85 136V160M5 80H29M141 80H165" stroke-width="1.5"/>
+    <circle cx="85" cy="80" r="5" fill="#34D399" filter="url(#glow)"/>
+    <circle cx="21" cy="22" r="3" fill="#38BDF8"/>
+    <circle cx="153" cy="142" r="3" fill="#34D399"/>
+  </g>
+  <rect x="1" y="1" width="1198" height="318" rx="17" stroke="#CFE3FA" stroke-opacity="0.12"/>
+</svg>
