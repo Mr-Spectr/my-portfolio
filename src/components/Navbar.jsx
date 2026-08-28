@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, FileText, Menu, X, Palette } from 'lucide-react';
+import { FileText, Menu, X, Palette } from 'lucide-react';
 
 export default function Navbar({ activeTheme, setTheme, onOpenCv }) {
   const [scrolled, setScrolled] = useState(false);
@@ -18,7 +18,8 @@ export default function Navbar({ activeTheme, setTheme, onOpenCv }) {
     { id: 'default', name: 'Sapphire Indigo', color: '#6366f1' },
     { id: 'emerald', name: 'Emerald Science', color: '#10b981' },
     { id: 'amber', name: 'Sunset Amber', color: '#f59e0b' },
-    { id: 'violet', name: 'Cyber Violet', color: '#a855f7' }
+    { id: 'violet', name: 'Cyber Violet', color: '#a855f7' },
+    { id: 'hacker', name: 'Terminal Green', color: '#10b981' }
   ];
 
   const navLinks = [
@@ -35,9 +36,6 @@ export default function Navbar({ activeTheme, setTheme, onOpenCv }) {
     <header className={`navbar-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="nav-container">
         <a href="#" className="nav-logo">
-          <div className="logo-icon">
-            <Sparkles size={20} className="logo-sparkle" />
-          </div>
           <span className="logo-text">Abhay Rawat</span>
           <span className="logo-sub">IIT Madras & NMIT</span>
         </a>
@@ -184,14 +182,17 @@ export default function Navbar({ activeTheme, setTheme, onOpenCv }) {
         .desktop-nav {
           display: flex;
           align-items: center;
-          gap: 1.8rem;
+          gap: 1rem;
         }
         .nav-link {
           color: var(--text-muted);
           text-decoration: none;
-          font-size: 0.92rem;
+          font-size: 0.8rem;
           font-weight: 500;
           transition: var(--transition-fast);
+          font-family: var(--font-mono);
+          text-transform: uppercase;
+          white-space: nowrap;
         }
         .nav-link:hover {
           color: var(--primary);
@@ -294,7 +295,7 @@ export default function Navbar({ activeTheme, setTheme, onOpenCv }) {
           font-size: 1.05rem;
           font-weight: 600;
         }
-        @media (max-width: 992px) {
+        @media (max-width: 1120px) {
           .desktop-nav { display: none; }
           .mobile-toggle { display: block; }
         }

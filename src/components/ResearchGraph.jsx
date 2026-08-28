@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Network, Info, Sparkles, Filter } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function ResearchGraph({ graphData, researchDomains }) {
   const canvasRef = useRef(null);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [activeDomain, setActiveDomain] = useState('all');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -145,34 +144,50 @@ export default function ResearchGraph({ graphData, researchDomains }) {
       <div className="graph-container">
         <div className="section-header">
           <span className="tag">Interactive Knowledge Map</span>
-          <h2>Research Domain Taxonomy</h2>
-          <p>Click on any research node below to explore connected papers, concepts, and ongoing investigations.</p>
+          <h2>Technical Focus Map</h2>
+          <p>Click a node to explore the technologies and project areas that shape Abhay’s work.</p>
         </div>
 
         {/* Research Focus Cards Grid */}
         <div className="research-domains-grid">
           {researchDomains.map(domain => (
-            <div key={domain.id} className="domain-card glass-card">
-              <div className="domain-header">
-                <div className="domain-badge">{domain.status}</div>
-                <span className="domain-count">{domain.papersCount} Publications</span>
+            <div key={domain.id} className="domain-card hacker-modal-content">
+              <div className="terminal-header">
+                <div className="terminal-title">// SYSTEM_MODULE [{domain.title.toUpperCase().replace(/\s+/g, '_')}]</div>
               </div>
-              <h3 className="domain-title">{domain.title}</h3>
-              <p className="domain-desc">{domain.desc}</p>
+              <div className="domain-body" style={{ padding: '1.6rem' }}>
+                <div className="domain-header">
+                  <div className="domain-badge">_{domain.status}</div>
+                  <span className="domain-count">[{domain.papersCount} FOCUS AREAS]</span>
+                </div>
+                <h3 className="domain-title">{domain.title}</h3>
+                <p className="domain-desc">
+                  <span className="cli-prompt">&gt;</span> {domain.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>
 
         {/* Dynamic HTML5 Canvas Graph Box */}
-        <div className="graph-box glass-card">
-          <div className="graph-box-header">
-            <div className="graph-title-row">
-              <Network size={20} className="graph-icon" />
-              <span className="graph-title-text">Interactive Research Knowledge Graph</span>
+        <div className="graph-box hacker-modal-content">
+          <div className="terminal-header">
+            <div className="terminal-title">// SYSTEM_QUERY [NETWORK_TAXONOMY]</div>
+            <div className="terminal-buttons">
+              <span className="t-btn t-red"></span>
+              <span className="t-btn t-yellow"></span>
+              <span className="t-btn t-green"></span>
             </div>
-            <div className="graph-hint">
-              <Info size={14} />
-              <span>Click nodes to inspect related topics</span>
+          </div>
+          
+          <div className="graph-box-header" style={{ padding: '1rem', borderBottom: '1px solid var(--border-glass)' }}>
+            <div className="graph-title-row">
+              <span className="cli-prompt">&gt;</span>
+              <span className="graph-title-text" style={{ fontFamily: 'var(--font-mono)' }}>INTERACTIVE_KNOWLEDGE_GRAPH</span>
+            </div>
+            <div className="graph-hint" style={{ fontFamily: 'var(--font-mono)' }}>
+              <span className="blinking-cursor">_</span>
+              <span>[AWAITING_USER_INPUT: CLICK_NODES]</span>
             </div>
           </div>
 
@@ -185,7 +200,7 @@ export default function ResearchGraph({ graphData, researchDomains }) {
                   <Sparkles size={16} className="node-sparkle" />
                   <h4>{selectedNode.label}</h4>
                 </div>
-                <p>Primary focus domain in Abhay Rawat's research portfolio.</p>
+                <p>A key technology area in Abhay Rawat’s portfolio.</p>
                 <div className="node-stats">
                   <span className="node-stat-pill">{selectedNode.val}</span>
                   <span className="node-stat-pill">Active Project</span>
@@ -213,44 +228,47 @@ export default function ResearchGraph({ graphData, researchDomains }) {
           margin-bottom: 3rem;
         }
         .domain-card {
-          padding: 1.6rem;
           display: flex;
           flex-direction: column;
-          gap: 0.8rem;
         }
         .domain-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          margin-bottom: 0.8rem;
         }
         .domain-badge {
-          background: var(--primary-light);
+          background: transparent;
           color: var(--primary);
-          border: 1px solid var(--primary-glow);
+          border: 1px solid var(--primary);
           padding: 3px 10px;
-          border-radius: 99px;
+          border-radius: 0;
           font-size: 0.75rem;
           font-weight: 700;
+          font-family: var(--font-mono);
         }
         .domain-count {
           font-size: 0.8rem;
           color: var(--text-dim);
           font-weight: 500;
+          font-family: var(--font-mono);
         }
         .domain-title {
           font-size: 1.25rem;
           font-weight: 700;
-          color: var(--text-main);
+          color: #fff;
+          margin-bottom: 0.5rem;
+          font-family: var(--font-mono);
         }
         .domain-desc {
           font-size: 0.92rem;
           color: var(--text-muted);
           line-height: 1.6;
+          font-family: var(--font-mono);
         }
 
         /* Canvas Graph Box */
         .graph-box {
-          padding: 1.5rem;
           position: relative;
           overflow: hidden;
         }

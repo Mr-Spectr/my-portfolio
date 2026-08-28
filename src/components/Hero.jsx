@@ -2,13 +2,8 @@ import React from 'react';
 import { 
   GraduationCap, 
   MapPin, 
-  Mail, 
-  ExternalLink, 
-  FileDown, 
-  BookOpen 
+  Mail
 } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, TwitterIcon } from './SocialIcons';
-import abhayAvatar from '../assets/abhay_avatar.png';
 
 export default function Hero({ profile, onOpenCv }) {
   return (
@@ -30,86 +25,91 @@ export default function Hero({ profile, onOpenCv }) {
 
         <div className="hero-grid">
           {/* Left Column: Text & Meta */}
-          <div className="hero-content">
-            <h1 className="hero-name">
-              Hello, I'm <span className="gradient-text">{profile.name}</span>
-            </h1>
-            <h2 className="hero-title">{profile.title}</h2>
-            <div className="hero-institution">
-              <GraduationCap size={18} className="institution-icon" />
-              <span>{profile.institution}</span>
-            </div>
-
-            <p className="hero-bio">{profile.tagline}</p>
-
-            {/* Quick Links & Location */}
-            <div className="hero-meta-row">
-              <div className="meta-item">
-                <MapPin size={15} />
-                <span>{profile.location}</span>
+          <div className="hero-content hacker-terminal">
+            <div className="terminal-header">
+              <div className="terminal-title">// SYSTEM_QUERY [USER_PROFILE]</div>
+              <div className="terminal-buttons">
+                <span class="t-btn t-red"></span>
+                <span class="t-btn t-yellow"></span>
+                <span class="t-btn t-green"></span>
               </div>
-              <div className="meta-item">
-                <span className="orcid-badge">ORCID</span>
-                <a href={`https://orcid.org/${profile.orcid}`} target="_blank" rel="noreferrer">
-                  {profile.orcid}
+            </div>
+            
+            <div className="hacker-body">
+              <pre className="ascii-hero" aria-label="Abhay Rawat">
+{`   ___   __   __                
+  / _ | / /  / /  ___ _ __ __
+ / __ |/ _ \\/ _ \\/ _ \`/ // /
+/_/ |_/_.__/_//_/\\_,_/\\_, / 
+                     /___/  `}
+              </pre>
+              
+              <h1 className="hero-name" style={{ display: 'none' }}>
+                Hello, I'm <span className="gradient-text">{profile.name}</span>
+              </h1>
+              
+              <p className="hacker-subtitle">
+                <span className="cli-prompt">&gt;</span> ROLE: {profile.title}<span className="blinking-cursor">_</span>
+              </p>
+              
+              <div className="hero-institution hacker-line">
+                <span className="cli-prompt">&gt;</span> <GraduationCap size={16} className="institution-icon" style={{marginRight: '8px'}} />
+                <span>{profile.institution}</span>
+              </div>
+
+              <p className="hero-bio hacker-line">
+                <span className="cli-prompt">&gt;</span> {profile.tagline}
+              </p>
+
+              {/* Quick details */}
+              <div className="hero-meta-row hacker-line">
+                <div className="meta-item">
+                  <span className="cli-prompt">&gt;</span> <MapPin size={15} style={{marginRight: '6px'}} />
+                  <span>{profile.location}</span>
+                </div>
+                <div className="meta-item">
+                  <Mail size={15} style={{marginRight: '6px'}} />
+                  <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="hero-cta-group hacker-line" style={{marginTop: '2rem'}}>
+                <a href="#projects" className="hacker-cta-btn btn-primary">
+                  <span>[EXPLORE_PROJECTS]</span>
+                </a>
+                <button onClick={onOpenCv} className="hacker-cta-btn btn-secondary">
+                  <span>[VIEW_CV]</span>
+                </button>
+                <a href="#contact" className="hacker-cta-btn btn-secondary">
+                  <span>[START_CONVERSATION]</span>
                 </a>
               </div>
-            </div>
 
-            {/* CTA Buttons */}
-            <div className="hero-cta-group">
-              <a href="#publications" className="btn-primary">
-                <BookOpen size={18} />
-                <span>Explore Publications</span>
-              </a>
-              <button onClick={onOpenCv} className="btn-secondary">
-                <FileDown size={18} />
-                <span>Download CV</span>
-              </button>
-              <a href="#contact" className="btn-secondary">
-                <Mail size={18} />
-                <span>Contact Lab</span>
-              </a>
-            </div>
-
-            {/* Scholar & Code Badges */}
-            <div className="hero-social-row">
-              <a href={profile.credly} target="_blank" rel="noreferrer" className="scholar-btn">
-                <BookOpen size={16} />
-                <span>Credly Certifications</span>
-                <ExternalLink size={12} />
-              </a>
-              <a href={profile.github} target="_blank" rel="noreferrer" className="scholar-btn">
-                <GithubIcon size={16} />
-                <span>GitHub</span>
-                <ExternalLink size={12} />
-              </a>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="scholar-btn">
-                <LinkedinIcon size={16} />
-                <span>LinkedIn</span>
-                <ExternalLink size={12} />
-              </a>
+              {/* Scholar & Code Badges */}
+              <div className="hero-social-row hacker-line">
+                <a href={profile.credly} target="_blank" rel="noreferrer" className="scholar-btn">
+                  <span>CREDLY_CERTS</span>
+                </a>
+                <a href={profile.github} target="_blank" rel="noreferrer" className="scholar-btn">
+                  <span>GITHUB</span>
+                </a>
+                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="scholar-btn">
+                  <span>LINKEDIN</span>
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Right Column: Researcher Profile Avatar Card */}
           <div className="hero-avatar-wrapper">
-            <div className="avatar-glass-card">
-              <div className="avatar-frame">
-                <img src={profile.avatar && profile.avatar.startsWith('http') ? profile.avatar : abhayAvatar} alt={profile.name} className="avatar-img" />
-                <div className="avatar-glow-ring"></div>
-              </div>
-
-              <div className="avatar-card-info">
-                <div className="info-badge">NMIT & IIT Madras Scholar</div>
-                <div className="info-title">Core Competencies</div>
-                <div className="info-tags">
-                  <span className="mini-tag">Agentic AI & RAG</span>
-                  <span className="mini-tag">FastAPI & Docker</span>
-                  <span className="mini-tag">Data Science</span>
-                  <span className="mini-tag">Flutter & Firebase</span>
-                </div>
-              </div>
+            <div className="hero-large-image-container">
+              <img 
+                src={`${import.meta.env.BASE_URL}abhay-avatar.jpg`}
+                alt={profile.name} 
+                className="hero-large-image" 
+              />
+              <div className="hero-image-overlay"></div>
             </div>
           </div>
         </div>
@@ -172,183 +172,121 @@ export default function Hero({ profile, onOpenCv }) {
           gap: 3.5rem;
           align-items: center;
         }
-        .hero-name {
-          font-size: 3.4rem;
-          font-weight: 800;
-          line-height: 1.15;
-          margin-bottom: 0.6rem;
-        }
-        .hero-title {
-          font-size: 1.45rem;
-          color: var(--text-muted);
-          font-weight: 600;
-          margin-bottom: 0.75rem;
-        }
-        .hero-institution {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: var(--primary);
-          font-weight: 600;
-          font-size: 1.05rem;
-          margin-bottom: 1.5rem;
-        }
-        .institution-icon {
-          color: var(--accent);
-        }
-        .hero-bio {
-          font-size: 1.15rem;
-          line-height: 1.75;
-          color: var(--text-muted);
-          margin-bottom: 2rem;
-          max-width: 650px;
-        }
-        .hero-meta-row {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1.5rem;
-          margin-bottom: 2rem;
-          font-size: 0.9rem;
-          color: var(--text-dim);
-        }
-        .meta-item {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        }
-        .orcid-badge {
-          background: #a6ce39;
-          color: #111;
-          font-weight: 800;
-          font-size: 0.7rem;
-          padding: 2px 6px;
+        .hacker-terminal {
+          background: rgba(10, 10, 10, 0.85);
+          border: 1px solid var(--border-glass);
           border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-        .meta-item a {
-          color: var(--text-muted);
-          text-decoration: none;
+        .hacker-body {
+          padding: 2rem;
+          font-family: var(--font-mono);
         }
-        .meta-item a:hover {
+        .ascii-hero {
           color: var(--primary);
+          font-family: var(--font-mono);
+          font-size: 0.9rem;
+          line-height: 1.2;
+          white-space: pre-wrap;
+          margin-bottom: 1.5rem;
+          text-shadow: 0 0 10px var(--primary-glow);
         }
-        .hero-cta-group {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-          margin-bottom: 2.2rem;
+        .hacker-subtitle {
+          color: #fff;
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+          font-family: var(--font-mono);
         }
+        .hacker-line {
+          font-family: var(--font-mono);
+          font-size: 0.95rem;
+          color: var(--text-muted);
+          margin-bottom: 1rem;
+        }
+        .hero-meta-row,
+        .hero-cta-group,
         .hero-social-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 10px;
+          align-items: center;
+          gap: 0.75rem;
         }
+        .hero-meta-row {
+          gap: 0.75rem 1.25rem;
+        }
+        .meta-item {
+          display: inline-flex;
+          align-items: center;
+          min-width: 0;
+        }
+        .meta-item a {
+          color: var(--accent);
+          text-decoration: none;
+          overflow-wrap: anywhere;
+        }
+        .meta-item a:hover { color: var(--primary); }
+        .hero-social-row { margin-top: 1.5rem; }
         .scholar-btn {
           display: inline-flex;
           align-items: center;
-          gap: 6px;
-          padding: 8px 14px;
-          border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.03);
           border: 1px solid var(--border-glass);
           color: var(--text-muted);
-          font-size: 0.85rem;
-          font-weight: 500;
+          padding: 0.45rem 0.7rem;
+          font-size: 0.78rem;
+          font-weight: 700;
+          letter-spacing: 0.04em;
           text-decoration: none;
           transition: var(--transition-fast);
         }
         .scholar-btn:hover {
+          color: var(--primary);
+          border-color: var(--primary);
           background: var(--primary-light);
-          border-color: var(--primary-glow);
-          color: var(--text-main);
         }
-
-        /* Avatar Card */
+        .hacker-cta-btn {
+          font-family: var(--font-mono);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          border-radius: 0;
+        }
+        
+        .hero-title {
+          font-size: 1.45rem;
+        }
         .hero-avatar-wrapper {
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
+          align-items: center;
+          height: 100%;
         }
-        .avatar-glass-card {
-          background: var(--bg-card);
-          backdrop-filter: blur(20px);
-          border: 1px solid var(--border-glass);
-          border-radius: var(--radius-xl);
-          padding: 2rem;
-          text-align: center;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        .hero-large-image-container {
           position: relative;
           width: 100%;
-          max-width: 380px;
-          transition: var(--transition-normal);
+          max-width: 500px;
+          height: 600px;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+          border: 1px solid var(--border-glass);
         }
-        .avatar-glass-card:hover {
-          border-color: var(--border-glow);
-          transform: translateY(-5px);
-          box-shadow: 0 25px 50px -10px var(--primary-glow);
-        }
-        .avatar-frame {
-          position: relative;
-          width: 170px;
-          height: 170px;
-          margin: 0 auto 1.5rem;
-          border-radius: 50%;
-          padding: 6px;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-        }
-        .avatar-img {
+        .hero-large-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 50%;
-          border: 3px solid var(--bg-dark);
+          object-position: center;
+          transform: scaleX(-1);
+          filter: contrast(1.1) saturate(1.1);
         }
-        .avatar-glow-ring {
+        .hero-image-overlay {
           position: absolute;
-          inset: -4px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-          filter: blur(12px);
-          opacity: 0.5;
-          z-index: -1;
-        }
-        .avatar-card-info {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 6px;
-        }
-        .info-badge {
-          background: var(--primary-light);
-          color: var(--primary);
-          border: 1px solid var(--primary-glow);
-          padding: 4px 12px;
-          border-radius: 999px;
-          font-size: 0.8rem;
-          font-weight: 700;
-        }
-        .info-title {
-          color: var(--text-dim);
-          font-size: 0.8rem;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          margin-top: 6px;
-        }
-        .info-tags {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 6px;
-          margin-top: 4px;
-        }
-        .mini-tag {
-          font-size: 0.75rem;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid var(--border-glass);
-          padding: 3px 8px;
-          border-radius: 6px;
-          color: var(--text-muted);
+          inset: 0;
+          background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0) 50%);
+          pointer-events: none;
         }
 
         @media (max-width: 992px) {
+          .hero-section { padding: 7rem 1.25rem 4rem; }
           .hero-grid {
             grid-template-columns: 1fr;
             gap: 2.5rem;
@@ -358,6 +296,21 @@ export default function Hero({ profile, onOpenCv }) {
           }
           .hero-avatar-wrapper {
             order: -1;
+            justify-content: center;
+          }
+          .hero-large-image-container {
+            height: min(105vw, 500px);
+          }
+        }
+        @media (max-width: 540px) {
+          .hacker-body { padding: 1.25rem; }
+          .ascii-hero { font-size: clamp(0.62rem, 2.6vw, 0.8rem); }
+          .hacker-subtitle { font-size: 0.95rem; }
+          .hacker-line { font-size: 0.83rem; }
+          .hero-cta-group .hacker-cta-btn { width: 100%; justify-content: center; }
+          .scholar-btn { flex: 1 1 calc(50% - 0.75rem); justify-content: center; }
+          .meta-item { width: 100%; }
+          .hero-large-image-container { height: 390px; }
           }
         }
       `}</style>

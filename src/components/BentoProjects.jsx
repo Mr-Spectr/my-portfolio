@@ -1,6 +1,5 @@
 import React from 'react';
-import { Star, GitFork, ExternalLink, Cpu, Zap, Activity } from 'lucide-react';
-import { GithubIcon } from './SocialIcons';
+import { Star, GitFork } from 'lucide-react';
 
 export default function BentoProjects({ projects }) {
   return (
@@ -8,39 +7,48 @@ export default function BentoProjects({ projects }) {
       <div className="bento-container">
         <div className="section-header">
           <span className="tag">Software & Benchmarks</span>
-          <h2>Open Source Research Artifacts</h2>
-          <p>Production-ready C++/CUDA libraries, distributed frameworks, and safety benchmarks created by our lab.</p>
+          <h2>Open-Source Software Projects</h2>
+          <p>Hands-on projects by Abhay Rawat across agentic AI, financial analytics, and mobile applications.</p>
         </div>
 
         <div className="bento-grid">
-          {projects.map((proj, idx) => (
-            <div key={proj.id} className={`bento-card glass-card ${proj.featured ? 'bento-large' : ''}`}>
-              <div className="bento-img-wrapper">
+          {projects.map((proj) => (
+            <div key={proj.id} className={`bento-card hacker-modal-content ${proj.featured ? 'bento-large' : ''}`}>
+              <div className="terminal-header">
+                <div className="terminal-title">// SYSTEM_PROCESS [{proj.title.toUpperCase().replace(/\s+/g, '_')}]</div>
+                <div className="terminal-buttons">
+                  <span className="t-btn t-red"></span>
+                  <span className="t-btn t-yellow"></span>
+                  <span className="t-btn t-green"></span>
+                </div>
+              </div>
+
+              <div className="bento-img-wrapper" style={{ borderBottom: '1px solid var(--border-glass)' }}>
                 <img src={proj.image} alt={proj.title} className="bento-img" />
                 <div className="bento-img-overlay"></div>
-                <div className="bento-category-pill">{proj.category}</div>
+                <div className="bento-category-pill">[{proj.category.toUpperCase()}]</div>
               </div>
 
               <div className="bento-body">
                 <div className="bento-top-meta">
                   <div className="bento-stars">
+                    <span className="cli-prompt">&gt;</span>
                     <Star size={14} className="star-icon" />
-                    <span>{proj.stars} Stars</span>
+                    <span>{proj.stars} STARS</span>
                   </div>
                   <div className="bento-forks">
                     <GitFork size={14} />
-                    <span>{proj.forks} Forks</span>
+                    <span>{proj.forks} FORKS</span>
                   </div>
                 </div>
 
-                <h3 className="bento-title">{proj.title}</h3>
-                <p className="bento-tagline">{proj.tagline}</p>
+                <h3 className="bento-title" style={{ fontFamily: 'var(--font-mono)' }}>{proj.title}</h3>
+                <p className="bento-tagline" style={{ fontFamily: 'var(--font-mono)' }}>{proj.tagline}</p>
 
                 {/* Performance Stats Pill */}
                 <div className="bento-stats-row">
                   {Object.entries(proj.stats).map(([key, val]) => (
                     <div key={key} className="bento-stat-item">
-                      <Activity size={12} className="stat-icon" />
                       <span className="stat-key">{key}:</span>
                       <span className="stat-val">{val}</span>
                     </div>
@@ -50,20 +58,18 @@ export default function BentoProjects({ projects }) {
                 {/* Tech Tags */}
                 <div className="bento-tags">
                   {proj.tags.map((tag) => (
-                    <span key={tag} className="bento-tag">{tag}</span>
+                    <span key={tag} className="bento-tag">_{tag}</span>
                   ))}
                 </div>
 
                 {/* Links */}
                 <div className="bento-footer">
                   <a href={proj.githubUrl} target="_blank" rel="noreferrer" className="bento-btn">
-                    <GithubIcon size={15} />
-                    <span>GitHub Repo</span>
+                    <span>[GITHUB_REPO]</span>
                   </a>
                   {proj.demoUrl && proj.demoUrl !== '#' && (
                     <a href={proj.demoUrl} target="_blank" rel="noreferrer" className="bento-btn primary">
-                      <ExternalLink size={15} />
-                      <span>Live Benchmark</span>
+                      <span>[VIEW_PROJECT]</span>
                     </a>
                   )}
                 </div>
@@ -113,20 +119,21 @@ export default function BentoProjects({ projects }) {
         .bento-img-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, 0.95) 100%);
+          background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.95) 100%);
         }
         .bento-category-pill {
           position: absolute;
           top: 14px;
           left: 14px;
-          background: rgba(9, 13, 22, 0.85);
+          background: rgba(0, 0, 0, 0.85);
           backdrop-filter: blur(10px);
-          border: 1px solid var(--border-glass);
-          color: var(--accent);
+          border: 1px solid var(--primary);
+          color: var(--primary);
+          font-family: var(--font-mono);
           font-weight: 700;
           font-size: 0.75rem;
           padding: 4px 12px;
-          border-radius: 99px;
+          border-radius: 0;
         }
         .bento-body {
           padding: 1.6rem;
@@ -141,6 +148,7 @@ export default function BentoProjects({ projects }) {
           font-size: 0.8rem;
           color: var(--text-dim);
           margin-bottom: 0.6rem;
+          font-family: var(--font-mono);
         }
         .bento-stars, .bento-forks {
           display: flex;
@@ -148,12 +156,13 @@ export default function BentoProjects({ projects }) {
           gap: 4px;
         }
         .star-icon {
-          color: #f59e0b;
+          color: var(--primary);
         }
         .bento-title {
           font-size: 1.35rem;
           font-weight: 700;
           margin-bottom: 0.5rem;
+          color: #fff;
         }
         .bento-tagline {
           font-size: 0.92rem;
@@ -171,18 +180,19 @@ export default function BentoProjects({ projects }) {
           display: flex;
           align-items: center;
           gap: 5px;
-          background: var(--primary-light);
-          border: 1px solid var(--primary-glow);
+          background: transparent;
+          border: 1px solid var(--border-glass);
           padding: 4px 10px;
-          border-radius: 6px;
+          border-radius: 0;
           font-size: 0.78rem;
+          font-family: var(--font-mono);
         }
         .stat-icon {
           color: var(--primary);
         }
         .stat-key {
           color: var(--text-dim);
-          text-transform: capitalize;
+          text-transform: uppercase;
         }
         .stat-val {
           color: var(--primary);
@@ -196,11 +206,12 @@ export default function BentoProjects({ projects }) {
         }
         .bento-tag {
           font-size: 0.75rem;
-          background: rgba(255, 255, 255, 0.04);
+          background: transparent;
           border: 1px solid var(--border-glass);
           padding: 3px 8px;
-          border-radius: 4px;
+          border-radius: 0;
           color: var(--text-muted);
+          font-family: var(--font-mono);
         }
         .bento-footer {
           margin-top: auto;
@@ -212,11 +223,12 @@ export default function BentoProjects({ projects }) {
           align-items: center;
           gap: 6px;
           padding: 8px 16px;
-          border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.05);
+          border-radius: 0;
+          background: transparent;
           border: 1px solid var(--border-glass);
           color: var(--text-main);
           font-size: 0.82rem;
+          font-family: var(--font-mono);
           font-weight: 600;
           text-decoration: none;
           transition: var(--transition-fast);
@@ -232,7 +244,7 @@ export default function BentoProjects({ projects }) {
         }
         .bento-btn.primary:hover {
           background: var(--primary);
-          color: #fff;
+          color: #111;
         }
 
         @media (max-width: 992px) {

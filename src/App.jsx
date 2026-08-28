@@ -15,7 +15,7 @@ import Footer from './components/Footer';
 import { CheckCircle } from 'lucide-react';
 
 export default function App() {
-  const [theme, setTheme] = useState('default');
+  const [theme, setTheme] = useState('hacker');
   const [isCvOpen, setIsCvOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
 

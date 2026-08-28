@@ -1,6 +1,5 @@
 import React from 'react';
-import { Sparkles, ArrowUp, BookOpen } from 'lucide-react';
-import { GithubIcon } from './SocialIcons';
+import { Sparkles, ArrowUp } from 'lucide-react';
 
 export default function Footer({ profile }) {
   const scrollToTop = () => {
@@ -36,12 +35,12 @@ export default function Footer({ profile }) {
 
         <div className="footer-bottom">
           <div className="copyright-text">
-            © {new Date().getFullYear()} {profile.name}. Designed for Academic Excellence.
+            © {new Date().getFullYear()} {profile.name}. Designed and built by Abhay Rawat.
           </div>
 
           <div className="footer-badges">
-            <span className="footer-badge">ORCID: {profile.orcid}</span>
-            <span className="footer-badge">MIT CSAIL & Stanford AI</span>
+            <span className="footer-badge">NMIT Bengaluru</span>
+            <span className="footer-badge">IIT Madras</span>
           </div>
         </div>
       </div>

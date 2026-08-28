@@ -67,6 +67,28 @@
   --border-glow: rgba(168, 85, 247, 0.35);
 }
 
+[data-theme="hacker"] {
+  --primary: #10b981;
+  --primary-light: rgba(16, 185, 129, 0.15);
+  --primary-glow: rgba(16, 185, 129, 0.4);
+  --accent: #34d399;
+  --accent-glow: rgba(52, 211, 153, 0.3);
+  --bg-dark: #050505;
+  --bg-card: rgba(10, 10, 10, 0.9);
+  --bg-card-hover: #111;
+  --bg-glass: #0a0a0a;
+  --border-glass: rgba(16, 185, 129, 0.3);
+  --border-glow: rgba(16, 185, 129, 0.6);
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --font-heading: 'Consolas', 'Courier New', monospace;
+  --font-mono: 'Consolas', 'Courier New', monospace;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -75,10 +97,16 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 110px;
   font-family: var(--font-sans);
   background-color: var(--bg-dark);
   color: var(--text-main);
   overflow-x: hidden;
+}
+
+/* Keep in-page navigation targets visible below the fixed header. */
+section[id] {
+  scroll-margin-top: 110px;
 }
 
 body {
@@ -90,13 +118,39 @@ body {
     var(--bg-dark);
 }
 
-/* Custom Scrollbar */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.5;
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+/* Global scanline effect for hacker theme */
+[data-theme="hacker"] body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2147483647; /* high z-index to cover everything but pointer-events: none */
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Keep the scrollbar styling valid after the global theme rules. */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-dark);
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 4px;
@@ -230,7 +284,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Section Title Wrapper */
 .section-header {
   margin-bottom: 3.5rem;
-  text-align: center;
+  text-align: left;
+  border-bottom: 1px dashed var(--border-glass);
+  padding-bottom: 1rem;
 }
 
 .section-header .tag {
@@ -241,20 +297,23 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary);
   margin-bottom: 0.6rem;
   display: block;
+  font-family: var(--font-mono);
 }
 
 .section-header h2 {
   font-size: 2.4rem;
   font-weight: 800;
   margin-bottom: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--primary);
 }
 
 .section-header p {
   color: var(--text-muted);
   max-width: 640px;
-  margin: 0 auto;
   font-size: 1.05rem;
   line-height: 1.6;
+  font-family: var(--font-mono);
 }
 
 /* Toast alert notification */
@@ -288,7 +347,82 @@ h1, h2, h3, h4, h5, h6 {
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* Media Queries for Responsiveness */
+/* Hacker Theme Terminal Cards */
+.hacker-modal-content {
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid var(--border-glass);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.hacker-modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 15px var(--primary-light);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.hacker-modal-content:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.2);
+}
+.hacker-modal-content:hover::before {
+  opacity: 1;
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #111;
+  border-bottom: 1px solid var(--border-glass);
+}
+.terminal-title {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+.terminal-buttons {
+  display: flex;
+  gap: 6px;
+}
+.t-btn {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.t-red { background: #ff5f56; }
+.t-yellow { background: #ffbd2e; }
+.t-green { background: #27c93f; }
+
+.cli-prompt {
+  color: var(--primary);
+  font-weight: bold;
+  margin-right: 8px;
+}
+.blinking-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background-color: var(--primary);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @media (max-width: 768px) {
   .section-header h2 {
     font-size: 1.85rem;

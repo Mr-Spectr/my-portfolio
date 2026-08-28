@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, Check, Copy, MessageSquare, GraduationCap } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, TwitterIcon } from './SocialIcons';
+import { Mail, MapPin, Send, Check, Copy, GraduationCap } from 'lucide-react';
 
 export default function ContactSection({ profile, onToast }) {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: 'Research Collaboration', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: 'Project Collaboration', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(profile.email);
-    setCopiedEmail(true);
-    onToast('Email address copied to clipboard!');
-    setTimeout(() => setCopiedEmail(false), 2500);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopiedEmail(true);
+      onToast('Email address copied to clipboard!');
+      setTimeout(() => setCopiedEmail(false), 2500);
+    } catch {
+      window.location.href = `mailto:${profile.email}`;
+      onToast('Opening your email client…');
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const subject = `${formData.subject} — ${formData.name}`;
+    const body = `Hello Abhay,\n\n${formData.message}\n\nRegards,\n${formData.name}\n${formData.email}`;
     setSubmitted(true);
-    onToast('Message sent successfully! Lab coordinator will respond shortly.');
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: 'Research Collaboration', message: '' });
-    }, 4000);
+    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    onToast('Your email client is ready with the message.');
+    setTimeout(() => setSubmitted(false), 1800);
   };
 
   return (
@@ -29,127 +33,142 @@ export default function ContactSection({ profile, onToast }) {
       <div className="contact-container">
         <div className="section-header">
           <span className="tag">Get In Touch</span>
-          <h2>Research Inquiries & Collaborations</h2>
-          <p>Interested in joining the lab, pursuing joint research proposals, or inviting Dr. Rivera for a keynote lecture?</p>
+          <h2>Let’s Build Something Meaningful</h2>
+          <p>Reach out for AI/ML collaborations, full-stack projects, internship opportunities, or a thoughtful technical conversation.</p>
         </div>
 
         <div className="contact-grid">
           {/* Left Column: Direct Info */}
-          <div className="contact-info-card glass-card">
-            <h3 className="info-card-title">Laboratory Coordinates</h3>
-            <p className="info-card-desc">
-              We welcome prospective PhD students, postdoctoral fellows, and visiting industry scholars.
-            </p>
+          <div className="contact-info-card hacker-modal-content">
+            <div className="terminal-header">
+              <div className="terminal-title">// SYSTEM_INFO [CONTACT_COORDINATES]</div>
+            </div>
+            <div className="info-body" style={{ padding: '2.2rem' }}>
+              <h3 className="info-card-title" style={{ fontFamily: 'var(--font-mono)' }}>Professional Coordinates</h3>
+              <p className="info-card-desc">
+                <span className="cli-prompt">&gt;</span> I am currently open to building practical, well-engineered AI and software products with ambitious teams.
+              </p>
 
-            <div className="info-list">
-              <div className="info-row">
-                <div className="info-icon"><Mail size={18} /></div>
-                <div className="info-content">
-                  <div className="info-label">Direct Email</div>
-                  <div className="email-copy-row">
-                    <span className="info-val">{profile.email}</span>
-                    <button onClick={handleCopyEmail} className="email-copy-btn">
-                      {copiedEmail ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
-                    </button>
+              <div className="info-list">
+                <div className="info-row">
+                  <div className="info-icon"><Mail size={18} /></div>
+                  <div className="info-content">
+                    <div className="info-label">Direct Email</div>
+                    <div className="email-copy-row">
+                      <span className="info-val">{profile.email}</span>
+                      <button onClick={handleCopyEmail} className="email-copy-btn">
+                        {copiedEmail ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="info-row">
+                  <div className="info-icon"><GraduationCap size={18} /></div>
+                  <div className="info-content">
+                    <div className="info-label">Affiliation</div>
+                    <div className="info-val">{profile.institution}</div>
+                  </div>
+                </div>
+
+                <div className="info-row">
+                  <div className="info-icon"><MapPin size={18} /></div>
+                  <div className="info-content">
+                    <div className="info-label">Location</div>
+                    <div className="info-val">{profile.location}</div>
                   </div>
                 </div>
               </div>
 
-              <div className="info-row">
-                <div className="info-icon"><GraduationCap size={18} /></div>
-                <div className="info-content">
-                  <div className="info-label">Affiliation</div>
-                  <div className="info-val">{profile.institution}</div>
+              <div className="social-connect-box">
+                <div className="connect-title">Verified Profiles</div>
+                <div className="connect-buttons">
+                  <a href={profile.github} target="_blank" rel="noreferrer" className="connect-btn">GitHub</a>
+                  <a href={profile.linkedin} target="_blank" rel="noreferrer" className="connect-btn">LinkedIn</a>
+                  <a href={profile.credly} target="_blank" rel="noreferrer" className="connect-btn">Credly</a>
                 </div>
-              </div>
-
-              <div className="info-row">
-                <div className="info-icon"><MapPin size={18} /></div>
-                <div className="info-content">
-                  <div className="info-label">Office Location</div>
-                  <div className="info-val">Gates Computer Science Bldg, Stanford, CA</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="social-connect-box">
-              <div className="connect-title">Academic & Social Profiles</div>
-              <div className="connect-buttons">
-                <a href={profile.googleScholar} target="_blank" rel="noreferrer" className="connect-btn">Scholar</a>
-                <a href={profile.github} target="_blank" rel="noreferrer" className="connect-btn">GitHub</a>
-                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="connect-btn">LinkedIn</a>
-                <a href={profile.twitter} target="_blank" rel="noreferrer" className="connect-btn">X / Twitter</a>
               </div>
             </div>
           </div>
 
           {/* Right Column: Inquiry Form */}
-          <div className="contact-form-card glass-card">
-            <form onSubmit={handleSubmit} className="contact-form">
-              <div className="form-group">
-                <label className="form-label">Your Name</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Prof. Jane Doe"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="form-input"
-                />
+          <div className="contact-form-card hacker-modal-content">
+            <div className="terminal-header">
+              <div className="terminal-title">// SYSTEM_INPUT [SECURE_TRANSMISSION]</div>
+              <div className="terminal-buttons">
+                <span className="t-btn t-red"></span>
+                <span className="t-btn t-yellow"></span>
+                <span className="t-btn t-green"></span>
               </div>
+            </div>
+            
+            <div className="form-body" style={{ padding: '2.2rem' }}>
+              <form onSubmit={handleSubmit} className="contact-form">
+                <div className="form-group">
+                  <label className="form-label">_Your Name</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="form-input"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label className="form-label">Email Address</label>
-                <input
-                  type="email"
-                  required
-                  placeholder="jane.doe@university.edu"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="form-input"
-                />
-              </div>
+                <div className="form-group">
+                  <label className="form-label">_Email Address</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="form-input"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label className="form-label">Inquiry Type</label>
-                <select
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="form-input select-input"
-                >
-                  <option value="Research Collaboration">Research Collaboration</option>
-                  <option value="Keynote / Talk Invitation">Keynote / Talk Invitation</option>
-                  <option value="PhD / Postdoc Application">PhD / Postdoc Application</option>
-                  <option value="Press / Media Inquiry">Press / Media Inquiry</option>
-                </select>
-              </div>
+                <div className="form-group">
+                  <label className="form-label">_Inquiry Type</label>
+                  <select
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="form-input select-input"
+                  >
+                    <option value="Project Collaboration">Project Collaboration</option>
+                    <option value="AI/ML or Software Role">AI/ML or Software Role</option>
+                    <option value="Freelance / Contract Work">Freelance / Contract Work</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                  </select>
+                </div>
 
-              <div className="form-group">
-                <label className="form-label">Message Summary</label>
-                <textarea
-                  required
-                  rows="4"
-                  placeholder="Provide a brief summary of your proposal or question..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="form-input textarea-input"
-                ></textarea>
-              </div>
+                <div className="form-group">
+                  <label className="form-label">_Message Summary</label>
+                  <textarea
+                    required
+                    rows="4"
+                    placeholder="Share a little context about your idea or opportunity..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="form-input textarea-input"
+                  ></textarea>
+                </div>
 
-              <button type="submit" className="btn-primary form-submit-btn">
-                {submitted ? (
-                  <>
-                    <Check size={18} />
-                    <span>Message Sent!</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} />
-                    <span>Send Research Inquiry</span>
-                  </>
-                )}
-              </button>
-            </form>
+                <button type="submit" className="btn-primary form-submit-btn hacker-cta-btn">
+                  {submitted ? (
+                    <>
+                      <Check size={18} />
+                      <span>[TRANSMISSION_SUCCESSFUL]</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={18} />
+                      <span>[TRANSMIT_INQUIRY]</span>
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -169,7 +188,6 @@ export default function ContactSection({ profile, onToast }) {
           gap: 2.5rem;
         }
         .contact-info-card {
-          padding: 2.2rem;
           display: flex;
           flex-direction: column;
         }
@@ -183,6 +201,7 @@ export default function ContactSection({ profile, onToast }) {
           color: var(--text-muted);
           line-height: 1.6;
           margin-bottom: 2rem;
+          font-family: var(--font-mono);
         }
         .info-list {
           display: flex;
@@ -197,9 +216,9 @@ export default function ContactSection({ profile, onToast }) {
         .info-icon {
           width: 42px;
           height: 42px;
-          border-radius: var(--radius-md);
-          background: var(--primary-light);
-          border: 1px solid var(--primary-glow);
+          border-radius: 0;
+          background: transparent;
+          border: 1px solid var(--primary);
           color: var(--primary);
           display: flex;
           align-items: center;
@@ -212,11 +231,13 @@ export default function ContactSection({ profile, onToast }) {
           text-transform: uppercase;
           letter-spacing: 0.05em;
           margin-bottom: 2px;
+          font-family: var(--font-mono);
         }
         .info-val {
           font-size: 0.95rem;
           font-weight: 600;
           color: var(--text-main);
+          font-family: var(--font-mono);
         }
         .email-copy-row {
           display: flex;
@@ -233,7 +254,6 @@ export default function ContactSection({ profile, onToast }) {
 
         .social-connect-box {
           margin-top: auto;
-          pt-2;
           border-top: 1px solid var(--border-glass);
           padding-top: 1.5rem;
         }
@@ -243,6 +263,7 @@ export default function ContactSection({ profile, onToast }) {
           color: var(--text-dim);
           text-transform: uppercase;
           margin-bottom: 0.8rem;
+          font-family: var(--font-mono);
         }
         .connect-buttons {
           display: flex;
@@ -251,24 +272,26 @@ export default function ContactSection({ profile, onToast }) {
         }
         .connect-btn {
           padding: 6px 14px;
-          border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.04);
+          border-radius: 0;
+          background: transparent;
           border: 1px solid var(--border-glass);
           color: var(--text-muted);
           font-size: 0.82rem;
           font-weight: 600;
           text-decoration: none;
           transition: var(--transition-fast);
+          font-family: var(--font-mono);
         }
         .connect-btn:hover {
-          background: var(--primary-light);
-          color: var(--primary);
+          background: rgba(255, 255, 255, 0.1);
+          color: #fff;
           border-color: var(--primary-glow);
         }
 
         /* Form */
         .contact-form-card {
-          padding: 2.2rem;
+          display: flex;
+          flex-direction: column;
         }
         .contact-form {
           display: flex;
@@ -283,17 +306,19 @@ export default function ContactSection({ profile, onToast }) {
         .form-label {
           font-size: 0.85rem;
           font-weight: 600;
-          color: var(--text-muted);
+          color: var(--primary);
+          font-family: var(--font-mono);
         }
         .form-input {
           padding: 12px 14px;
-          background: rgba(9, 13, 22, 0.6);
+          background: rgba(10, 10, 10, 0.9);
           border: 1px solid var(--border-glass);
-          border-radius: var(--radius-md);
+          border-radius: 0;
           color: var(--text-main);
           font-size: 0.92rem;
           outline: none;
           transition: var(--transition-fast);
+          font-family: var(--font-mono);
         }
         .form-input:focus {
           border-color: var(--primary);

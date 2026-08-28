@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, DollarSign, ShieldCheck, Sparkles } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 export default function AwardsGrants({ awards }) {
   return (

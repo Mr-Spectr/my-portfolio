@@ -1,7 +1,7 @@
 import React from 'react';
-import { X, Printer, Download, GraduationCap, Briefcase, Award, BookOpen, FileText } from 'lucide-react';
+import { X, Printer, FileText } from 'lucide-react';
 
-export default function CvModal({ isOpen, onClose, profile, timeline, awards, publications }) {
+export default function CvModal({ isOpen, onClose, profile }) {
   if (!isOpen) return null;
 
   const handlePrint = () => {
