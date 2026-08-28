@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Briefcase, BookOpen, GraduationCap, Calendar, ExternalLink } from 'lucide-react';
+import { Briefcase, BookOpen } from 'lucide-react';
 
 export default function AcademicTimeline({ timeline, teaching }) {
   const [activeTab, setActiveTab] = useState('career');
@@ -9,8 +9,8 @@ export default function AcademicTimeline({ timeline, teaching }) {
       <div className="timeline-container">
         <div className="section-header">
           <span className="tag">Academic Journey</span>
-          <h2>Education, Projects & Learning</h2>
-          <p>Current academic work, selected projects, and learning credentials that shape my technical practice.</p>
+          <h2>Education, Credentials & Project Experience</h2>
+          <p>A concise view of formal study, applied engineering work, and certification pathways.</p>
         </div>
 
         {/* Tab Buttons */}
@@ -20,14 +20,14 @@ export default function AcademicTimeline({ timeline, teaching }) {
             onClick={() => setActiveTab('career')}
           >
             <Briefcase size={16} />
-            <span>Education & Projects</span>
+            <span>Education & Project Roles</span>
           </button>
           <button
             className={`timeline-tab-btn ${activeTab === 'teaching' ? 'active' : ''}`}
             onClick={() => setActiveTab('teaching')}
           >
             <BookOpen size={16} />
-            <span>Learning Credentials ({teaching.length})</span>
+            <span>Courses & Credentials ({teaching.length})</span>
           </button>
         </div>
 
@@ -41,48 +41,51 @@ export default function AcademicTimeline({ timeline, teaching }) {
                   <div className="marker-line"></div>
                 </div>
 
-                <div className="timeline-content glass-card">
+                <div className="timeline-content hacker-modal-content" style={{ padding: '1.6rem' }}>
                   <div className="timeline-top">
                     <span className="timeline-period">
-                      <Calendar size={13} />
+                      <span className="cli-prompt">&gt;</span>
                       {item.period}
                     </span>
-                    <span className="timeline-type-pill">{item.badge}</span>
+                    <span className="timeline-type-pill">_{item.badge}</span>
                   </div>
 
-                  <h3 className="timeline-role">{item.role}</h3>
+                  <h3 className="timeline-role" style={{ fontFamily: 'var(--font-mono)' }}>{item.role}</h3>
                   <div className="timeline-institution">
-                    <GraduationCap size={16} />
                     <span>{item.institution}</span>
                   </div>
 
-                  <p className="timeline-details">{item.details}</p>
+                  <p className="timeline-details" style={{ fontFamily: 'var(--font-mono)' }}>{item.details}</p>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          /* Learning credentials grid */
+          /* Teaching & Pedagogy Grid */
           <div className="teaching-grid">
             {teaching.map((course, idx) => (
-              <div key={idx} className="teaching-card glass-card">
+              <div key={idx} className="teaching-card hacker-modal-content">
+                <div className="terminal-header">
+                  <div className="terminal-title">// SYSTEM_MODULE [{course.code}]</div>
+                </div>
+                <div className="teaching-body" style={{ padding: '1.6rem' }}>
                 <div className="course-header">
                   <span className="course-code">{course.code}</span>
                   <span className="course-level">{course.level}</span>
                 </div>
 
                 <h3 className="course-title">{course.title}</h3>
-
+                
                 <div className="course-meta">
                   <div className="course-term">{course.term}</div>
                   <div className="course-role">{course.role}</div>
                 </div>
 
                 <div className="course-footer">
-                  <a href={course.syllabusUrl} target="_blank" rel="noreferrer" className="syllabus-link">
-                    <span>View Credential</span>
-                    <ExternalLink size={13} />
+                  <a href={course.syllabusUrl} className="syllabus-link">
+                    <span>[SYLLABUS_AND_LECTURE_NOTES]</span>
                   </a>
+                </div>
                 </div>
               </div>
             ))}
@@ -254,7 +257,6 @@ export default function AcademicTimeline({ timeline, teaching }) {
         }
         .course-footer {
           margin-top: auto;
-          pt-2;
           border-top: 1px solid var(--border-glass);
           padding-top: 0.8rem;
         }

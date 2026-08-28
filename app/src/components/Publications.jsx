@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import {
-  FileText,
-  Search,
-  Quote,
-  ExternalLink,
-  Code,
-  Award,
-  ChevronDown,
-  ChevronUp,
-  Copy,
-  Check,
+import { 
+  FileText, 
+  Search, 
+  Quote, 
+  ExternalLink, 
+  Code, 
+  Award, 
+  ChevronDown, 
+  ChevronUp, 
+  Copy, 
+  Check, 
   BookOpen,
   X
 } from 'lucide-react';
@@ -31,15 +31,14 @@ export default function Publications({ publications, onCopyBibtex }) {
     const matchesSearch = pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           pub.abstract.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           pub.venue.toLowerCase().includes(searchTerm.toLowerCase());
-
-    if (selectedCategory === 'All') return matchesSearch;
-    return matchesSearch && pub.category === selectedCategory;
+    
+    return matchesSearch && (selectedCategory === 'All' || pub.category === selectedCategory);
   });
 
   const handleCopyCode = (text, id) => {
     navigator.clipboard.writeText(text);
     setCopiedId(id);
-    onCopyBibtex('BibTeX citation copied to clipboard!');
+    onCopyBibtex('Software citation copied to clipboard!');
     setTimeout(() => setCopiedId(null), 2500);
   };
 
@@ -47,9 +46,9 @@ export default function Publications({ publications, onCopyBibtex }) {
     <section id="publications" className="pub-section">
       <div className="pub-container">
         <div className="section-header">
-          <span className="tag">Project Dossiers</span>
+          <span className="tag">Technical Portfolio</span>
           <h2>Selected Technical Work</h2>
-          <p>Implementation notes, design decisions, and repository links for selected AI, data, and mobile projects.</p>
+          <p>Open-source projects spanning agentic AI, data analytics, and cross-platform mobile engineering.</p>
         </div>
 
         {/* Filter Controls & Search */}
@@ -58,7 +57,7 @@ export default function Publications({ publications, onCopyBibtex }) {
             <Search size={18} className="search-icon" />
             <input
               type="text"
-              placeholder="Search by project title, summary, or technology..."
+              placeholder="Search by project, technology, or focus area..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
@@ -92,27 +91,35 @@ export default function Publications({ publications, onCopyBibtex }) {
             </div>
           ) : (
             filteredPubs.map(pub => (
-              <div key={pub.id} className={`pub-card glass-card ${pub.isHighlighted ? 'highlighted-card' : ''}`}>
-                <div className="pub-header">
-                  <div className="pub-badges">
-                    <span className="badge-pill">{pub.year}</span>
-                    <span className="pub-type-badge">{pub.type}</span>
-                    <span className="pub-category-badge">{pub.category}</span>
-                    {pub.award && (
-                      <span className="pub-award-badge">
-                        <Award size={13} />
-                        {pub.award}
-                      </span>
-                    )}
+              <div key={pub.id} className={`pub-card hacker-modal-content ${pub.isHighlighted ? 'highlighted-card' : ''}`}>
+                <div className="terminal-header">
+                  <div className="terminal-title">// SYSTEM_QUERY [PROJECT_{pub.year}_{pub.id}]</div>
+                  <div className="terminal-buttons">
+                    <span className="t-btn t-red"></span>
+                    <span className="t-btn t-yellow"></span>
+                    <span className="t-btn t-green"></span>
                   </div>
-
-                  {pub.citations != null && (
-                    <div className="pub-citations">
-                      <Quote size={14} />
-                      <span>{pub.citations} Citations</span>
-                    </div>
-                  )}
                 </div>
+
+                <div className="pub-body-inner" style={{ padding: '1.8rem' }}>
+                  <div className="pub-header">
+                    <div className="pub-badges">
+                      <span className="badge-pill">_{pub.year}</span>
+                      <span className="pub-type-badge">_{pub.type}</span>
+                      <span className="pub-category-badge">_{pub.category}</span>
+                      {pub.award && (
+                        <span className="pub-award-badge">
+                          <Award size={13} />
+                          {pub.award}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="pub-citations">
+                      <span className="cli-prompt">&gt;</span>
+                      <span>OPEN_SOURCE</span>
+                    </div>
+                  </div>
 
                 <h3 className="pub-title">{pub.title}</h3>
 
@@ -128,7 +135,7 @@ export default function Publications({ publications, onCopyBibtex }) {
 
                 {/* Abstract Expander */}
                 <div className="pub-abstract-row">
-                  <button
+                  <button 
                     onClick={() => toggleAbstract(pub.id)}
                     className="toggle-abstract-btn"
                   >
@@ -148,7 +155,7 @@ export default function Publications({ publications, onCopyBibtex }) {
                   <div className="pub-action-links">
                     <a href={pub.pdfUrl} target="_blank" rel="noreferrer" className="pub-action-btn">
                       <FileText size={15} />
-                      <span>Project Link</span>
+                      <span>Project Page</span>
                     </a>
                     {pub.codeUrl && (
                       <a href={pub.codeUrl} target="_blank" rel="noreferrer" className="pub-action-btn">
@@ -164,15 +171,16 @@ export default function Publications({ publications, onCopyBibtex }) {
                     )}
                   </div>
 
-                  <button
-                    onClick={() => setActiveBibtexModal(pub)}
+                  <button 
+                    onClick={() => setActiveBibtexModal(pub)} 
                     className="bibtex-btn"
                   >
                     <Quote size={14} />
-                    <span>Cite (BibTeX)</span>
+                    <span>Software Citation</span>
                   </button>
                 </div>
               </div>
+            </div>
             ))
           )}
         </div>
@@ -185,7 +193,7 @@ export default function Publications({ publications, onCopyBibtex }) {
             <div className="modal-header">
               <div className="modal-title">
                 <Quote size={18} className="quote-icon" />
-                <span>BibTeX Citation</span>
+                <span>Software Citation</span>
               </div>
               <button onClick={() => setActiveBibtexModal(null)} className="close-modal-btn">
                 <X size={18} />
@@ -208,7 +216,7 @@ export default function Publications({ publications, onCopyBibtex }) {
                   ) : (
                     <>
                       <Copy size={16} />
-                      <span>Copy BibTeX</span>
+                      <span>Copy Citation</span>
                     </>
                   )}
                 </button>
@@ -310,8 +318,11 @@ export default function Publications({ publications, onCopyBibtex }) {
           color: var(--text-dim);
         }
         .pub-card {
-          padding: 1.8rem;
           position: relative;
+        }
+        .pub-card .pub-body-inner {
+          padding: 1.8rem;
+          font-family: var(--font-mono);
         }
         .highlighted-card {
           border-left: 4px solid var(--primary);
@@ -332,29 +343,30 @@ export default function Publications({ publications, onCopyBibtex }) {
         }
         .pub-type-badge {
           font-size: 0.78rem;
-          background: rgba(255, 255, 255, 0.06);
+          background: transparent;
           border: 1px solid var(--border-glass);
           padding: 3px 10px;
-          border-radius: 6px;
+          border-radius: 0;
           color: var(--accent);
           font-weight: 600;
         }
         .pub-category-badge {
           font-size: 0.78rem;
           color: var(--text-dim);
-          background: rgba(255, 255, 255, 0.03);
+          background: transparent;
+          border: 1px solid var(--border-glass);
           padding: 3px 8px;
-          border-radius: 6px;
+          border-radius: 0;
         }
         .pub-award-badge {
           display: inline-flex;
           align-items: center;
           gap: 4px;
-          background: rgba(245, 158, 11, 0.15);
+          background: transparent;
           color: #f59e0b;
-          border: 1px solid rgba(245, 158, 11, 0.3);
+          border: 1px solid rgba(245, 158, 11, 0.5);
           padding: 3px 10px;
-          border-radius: 999px;
+          border-radius: 0;
           font-size: 0.78rem;
           font-weight: 700;
         }
@@ -363,11 +375,12 @@ export default function Publications({ publications, onCopyBibtex }) {
           align-items: center;
           gap: 6px;
           font-size: 0.82rem;
-          color: var(--accent);
+          color: var(--primary);
           font-weight: 600;
-          background: var(--primary-light);
+          background: transparent;
+          border: 1px solid var(--primary);
           padding: 4px 10px;
-          border-radius: 6px;
+          border-radius: 0;
         }
         .pub-title {
           font-size: 1.3rem;
@@ -375,11 +388,13 @@ export default function Publications({ publications, onCopyBibtex }) {
           line-height: 1.35;
           margin-bottom: 0.6rem;
           color: var(--text-main);
+          font-family: var(--font-mono);
         }
         .pub-authors {
           font-size: 0.95rem;
           color: var(--text-muted);
           margin-bottom: 0.4rem;
+          font-family: var(--font-mono);
         }
         .author-highlight {
           color: var(--primary);
@@ -392,6 +407,7 @@ export default function Publications({ publications, onCopyBibtex }) {
           font-style: italic;
           color: var(--text-dim);
           margin-bottom: 1rem;
+          font-family: var(--font-mono);
         }
         .pub-abstract-row {
           margin-bottom: 0.8rem;
@@ -407,26 +423,27 @@ export default function Publications({ publications, onCopyBibtex }) {
           align-items: center;
           gap: 4px;
           padding: 0;
+          font-family: var(--font-mono);
         }
         .toggle-abstract-btn:hover {
           text-decoration: underline;
         }
         .abstract-content {
-          background: rgba(9, 13, 22, 0.7);
+          background: rgba(10, 10, 10, 0.9);
           border: 1px solid var(--border-glass);
-          border-radius: var(--radius-sm);
+          border-radius: 0;
           padding: 1rem;
           margin-bottom: 1.2rem;
           font-size: 0.9rem;
           line-height: 1.65;
           color: var(--text-muted);
           animation: fadeIn 0.2s ease-out;
+          font-family: var(--font-mono);
         }
         .pub-footer {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          pt-2;
           border-top: 1px solid var(--border-glass);
           padding-top: 1rem;
           flex-wrap: wrap;
@@ -441,37 +458,39 @@ export default function Publications({ publications, onCopyBibtex }) {
           align-items: center;
           gap: 6px;
           padding: 6px 14px;
-          border-radius: var(--radius-sm);
-          background: rgba(255, 255, 255, 0.04);
+          border-radius: 0;
+          background: transparent;
           border: 1px solid var(--border-glass);
           color: var(--text-main);
           font-size: 0.82rem;
           font-weight: 600;
           text-decoration: none;
           transition: var(--transition-fast);
+          font-family: var(--font-mono);
         }
         .pub-action-btn:hover {
-          background: var(--primary-light);
+          background: rgba(255, 255, 255, 0.1);
           border-color: var(--primary-glow);
-          color: var(--primary);
+          color: #fff;
         }
         .bibtex-btn {
           display: inline-flex;
           align-items: center;
           gap: 6px;
           padding: 6px 14px;
-          border-radius: var(--radius-sm);
-          background: var(--primary-light);
-          border: 1px solid var(--primary-glow);
+          border-radius: 0;
+          background: transparent;
+          border: 1px solid var(--primary);
           color: var(--primary);
           font-size: 0.82rem;
           font-weight: 600;
           cursor: pointer;
           transition: var(--transition-fast);
+          font-family: var(--font-mono);
         }
         .bibtex-btn:hover {
           background: var(--primary);
-          color: #fff;
+          color: #111;
         }
 
         /* Modal */

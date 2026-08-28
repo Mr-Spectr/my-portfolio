@@ -9,12 +9,14 @@ import BentoProjects from './components/BentoProjects';
 import VerifiedProfiles from './components/VerifiedProfiles';
 import AcademicTimeline from './components/AcademicTimeline';
 import AwardsGrants from './components/AwardsGrants';
+import CvModal from './components/CvModal';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import { CheckCircle } from 'lucide-react';
 
 export default function App() {
-  const [theme, setTheme] = useState('default');
+  const [theme, setTheme] = useState('hacker');
+  const [isCvOpen, setIsCvOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
 
   useEffect(() => {
@@ -31,53 +33,64 @@ export default function App() {
 
   return (
     <div className="app-main">
-      <Navbar
-        activeTheme={theme}
-        setTheme={setTheme}
+      <Navbar 
+        activeTheme={theme} 
+        setTheme={setTheme} 
+        onOpenCv={() => setIsCvOpen(true)} 
       />
 
       <main>
-        <Hero
-          profile={PORTFOLIO_DATA.profile}
+        <Hero 
+          profile={PORTFOLIO_DATA.profile} 
+          onOpenCv={() => setIsCvOpen(true)} 
         />
 
-        <ImpactMetrics
-          metrics={PORTFOLIO_DATA.metrics}
+        <ImpactMetrics 
+          metrics={PORTFOLIO_DATA.metrics} 
         />
 
-        <ResearchGraph
-          graphData={PORTFOLIO_DATA.graphData}
-          researchDomains={PORTFOLIO_DATA.researchDomains}
+        <ResearchGraph 
+          graphData={PORTFOLIO_DATA.graphData} 
+          researchDomains={PORTFOLIO_DATA.researchDomains} 
         />
 
-        <Publications
-          publications={PORTFOLIO_DATA.publications}
-          onCopyBibtex={addToast}
+        <Publications 
+          publications={PORTFOLIO_DATA.publications} 
+          onCopyBibtex={addToast} 
         />
 
-        <BentoProjects
-          projects={PORTFOLIO_DATA.projects}
+        <BentoProjects 
+          projects={PORTFOLIO_DATA.projects} 
         />
 
         <VerifiedProfiles />
 
-        <AcademicTimeline
-          timeline={PORTFOLIO_DATA.timeline}
-          teaching={PORTFOLIO_DATA.teaching}
+        <AcademicTimeline 
+          timeline={PORTFOLIO_DATA.timeline} 
+          teaching={PORTFOLIO_DATA.teaching} 
         />
 
-        <AwardsGrants
-          awards={PORTFOLIO_DATA.awards}
+        <AwardsGrants 
+          awards={PORTFOLIO_DATA.awards} 
         />
 
-        <ContactSection
-          profile={PORTFOLIO_DATA.profile}
-          onToast={addToast}
+        <ContactSection 
+          profile={PORTFOLIO_DATA.profile} 
+          onToast={addToast} 
         />
       </main>
 
-      <Footer
+      <Footer 
+        profile={PORTFOLIO_DATA.profile} 
+      />
+
+      <CvModal 
+        isOpen={isCvOpen} 
+        onClose={() => setIsCvOpen(false)} 
         profile={PORTFOLIO_DATA.profile}
+        timeline={PORTFOLIO_DATA.timeline}
+        awards={PORTFOLIO_DATA.awards}
+        publications={PORTFOLIO_DATA.publications}
       />
 
       {/* Toast Notifications */}

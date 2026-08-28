@@ -1,5 +1,4 @@
 import React from 'react';
-import { ExternalLink, ShieldCheck, Award, Globe, CheckCircle2 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 
 export default function VerifiedProfiles() {
@@ -22,11 +21,14 @@ export default function VerifiedProfiles() {
 
         <div className="profiles-grid">
           {/* GitHub Preview Card */}
-          <div className="profile-card glass-card">
-            <div className="card-top-bar github-bar">
-              <GithubIcon size={22} className="platform-icon" />
-              <span className="platform-name">GitHub Profile</span>
-              <span className="status-pill">Active Developer</span>
+          <div className="profile-card hacker-modal-content">
+            <div className="terminal-header">
+              <div className="terminal-title">// SYSTEM_QUERY [GITHUB_PROFILE]</div>
+              <div className="terminal-buttons">
+                <span className="t-btn t-red"></span>
+                <span className="t-btn t-yellow"></span>
+                <span className="t-btn t-green"></span>
+              </div>
             </div>
 
             <div className="card-body">
@@ -38,35 +40,38 @@ export default function VerifiedProfiles() {
                   <h3 className="user-handle">@Mr-Spectr</h3>
                   <p className="user-sub">Abhay Rawat — GitHub</p>
                 </div>
+                <span className="status-pill">ACTIVE</span>
               </div>
 
               <p className="profile-bio-text">
-                Primary software engineering hub featuring Enterprise Agentic AI, MACRA Financial Analytics, FlutChat, and GameMania repositories.
+                <span className="cli-prompt">&gt;</span> Primary software engineering hub featuring Enterprise Agentic AI, MACRA Financial Analytics, FlutChat, and GameMania repositories.
               </p>
 
               <div className="card-tags">
-                <span className="card-tag">Python</span>
-                <span className="card-tag">FastAPI</span>
-                <span className="card-tag">RAG Pipelines</span>
-                <span className="card-tag">Flutter</span>
-                <span className="card-tag">Docker</span>
+                <span className="card-tag">_Python</span>
+                <span className="card-tag">_FastAPI</span>
+                <span className="card-tag">_RAG_Pipelines</span>
+                <span className="card-tag">_Flutter</span>
+                <span className="card-tag">_Docker</span>
               </div>
             </div>
 
             <div className="card-footer">
               <a href="https://github.com/Mr-Spectr" target="_blank" rel="noreferrer" className="visit-profile-btn">
-                <span>View GitHub Profile</span>
-                <ExternalLink size={14} />
+                <span>[VIEW_GITHUB_PROFILE]</span>
               </a>
             </div>
           </div>
 
           {/* LinkedIn Preview Card */}
-          <div className="profile-card glass-card">
-            <div className="card-top-bar linkedin-bar">
-              <LinkedinIcon size={22} className="platform-icon" />
-              <span className="platform-name">LinkedIn Network</span>
-              <span className="status-pill">Verified</span>
+          <div className="profile-card hacker-modal-content">
+            <div className="terminal-header">
+              <div className="terminal-title">// SYSTEM_QUERY [LINKEDIN_NETWORK]</div>
+              <div className="terminal-buttons">
+                <span className="t-btn t-red"></span>
+                <span className="t-btn t-yellow"></span>
+                <span className="t-btn t-green"></span>
+              </div>
             </div>
 
             <div className="card-body">
@@ -76,48 +81,52 @@ export default function VerifiedProfiles() {
                 </div>
                 <div>
                   <h3 className="user-handle">Abhay Rawat</h3>
-                  <p className="user-sub">Information Science & Data Science Scholar</p>
+                  <p className="user-sub">Data Science Scholar</p>
                 </div>
+                <span className="status-pill">VERIFIED</span>
               </div>
 
               <p className="profile-bio-text">
-                Bengaluru, India • Nitte Meenakshi Institute of Technology (B.E. ISE, CGPA 8.5) & IIT Madras Data Science Scholar.
+                <span className="cli-prompt">&gt;</span> Bengaluru, India • Nitte Meenakshi Institute of Technology (B.E. ISE) & IIT Madras Data Science Scholar.
               </p>
 
               <div className="card-tags">
-                <span className="card-tag">AI Engineering</span>
-                <span className="card-tag">Backend Systems</span>
-                <span className="card-tag">IIT Madras</span>
-                <span className="card-tag">Amazon ML Top 15%</span>
+                <span className="card-tag">_AI_Engineering</span>
+                <span className="card-tag">_Backend_Systems</span>
+                <span className="card-tag">_IIT_Madras</span>
+                <span className="card-tag">_Amazon_ML</span>
               </div>
             </div>
 
             <div className="card-footer">
               <a href="https://www.linkedin.com/in/abhay-rawat-790b24288/" target="_blank" rel="noreferrer" className="visit-profile-btn">
-                <span>Connect on LinkedIn</span>
-                <ExternalLink size={14} />
+                <span>[CONNECT_ON_LINKEDIN]</span>
               </a>
             </div>
           </div>
 
           {/* Google Cloud Platform (GCP) Skills Preview Card */}
-          <div className="profile-card glass-card gcp-highlight">
-            <div className="card-top-bar gcp-bar">
-              <Globe size={20} className="platform-icon gcp-icon" />
-              <span className="platform-name">Google Cloud Skills</span>
-              <span className="diamond-badge">💎 Diamond League</span>
+          <div className="profile-card hacker-modal-content gcp-highlight">
+            <div className="terminal-header">
+              <div className="terminal-title">// SYSTEM_QUERY [GCP_SKILLS]</div>
+              <div className="terminal-buttons">
+                <span className="t-btn t-red"></span>
+                <span className="t-btn t-yellow"></span>
+                <span className="t-btn t-green"></span>
+              </div>
             </div>
 
             <div className="card-body">
               <div className="gcp-score-strip">
                 <div className="score-num gradient-text">82,330</div>
                 <div className="score-label">Points Earned on Google Cloud Skills</div>
+                <span className="diamond-badge" style={{marginTop: '10px'}}>DIAMOND_LEAGUE</span>
               </div>
 
               <div className="gcp-badges-list">
                 {gcpBadges.map((badge, idx) => (
                   <div key={idx} className="gcp-badge-item">
-                    <CheckCircle2 size={15} className="gcp-check" />
+                    <span className="cli-prompt">&gt;</span>
                     <span>{badge}</span>
                   </div>
                 ))}
@@ -126,42 +135,44 @@ export default function VerifiedProfiles() {
 
             <div className="card-footer">
               <a href="https://www.skills.google/public_profiles/08f5ad17-6599-4ca1-8942-eaf7a7f974c8" target="_blank" rel="noreferrer" className="visit-profile-btn gcp-btn">
-                <span>View Google Skills Profile</span>
-                <ExternalLink size={14} />
+                <span>[VIEW_GCP_PROFILE]</span>
               </a>
             </div>
           </div>
 
           {/* Credly Verified Credentials Preview Card */}
-          <div className="profile-card glass-card">
-            <div className="card-top-bar credly-bar">
-              <ShieldCheck size={22} className="platform-icon credly-icon" />
-              <span className="platform-name">Credly Registry</span>
-              <span className="status-pill">Official Badges</span>
+          <div className="profile-card hacker-modal-content">
+            <div className="terminal-header">
+              <div className="terminal-title">// SYSTEM_QUERY [CREDLY_REGISTRY]</div>
+              <div className="terminal-buttons">
+                <span className="t-btn t-red"></span>
+                <span className="t-btn t-yellow"></span>
+                <span className="t-btn t-green"></span>
+              </div>
             </div>
 
             <div className="card-body">
               <div className="credly-info-header">
-                <Award size={20} className="credly-award-icon" />
+                <span className="cli-prompt">&gt;</span>
                 <span>Verified Cloud & Technical Certifications</span>
+                <span className="status-pill">OFFICIAL</span>
               </div>
 
               <p className="profile-bio-text">
-                Verified digital badges for Google Cloud Foundations & Engineering, AWS Cloud Architecture, Azure Fundamentals, and Rice University Algorithmic Thinking.
+                <span className="cli-prompt">&gt;</span> Verified digital badges for Google Cloud Foundations & Engineering, AWS Cloud Architecture, Azure Fundamentals, and Rice University Algorithmic Thinking.
               </p>
 
               <div className="card-tags">
-                <span className="card-tag">AWS Cloud</span>
-                <span className="card-tag">GCP Engineering</span>
-                <span className="card-tag">Azure AI</span>
-                <span className="card-tag">Rice Univ</span>
+                <span className="card-tag">_AWS_Cloud</span>
+                <span className="card-tag">_GCP_Engineering</span>
+                <span className="card-tag">_Azure_AI</span>
+                <span className="card-tag">_Rice_Univ</span>
               </div>
             </div>
 
             <div className="card-footer">
               <a href="https://www.credly.com/users/abhay-rawat.d65578c3/badges/credly" target="_blank" rel="noreferrer" className="visit-profile-btn">
-                <span>Verify Badges on Credly</span>
-                <ExternalLink size={14} />
+                <span>[VERIFY_ON_CREDLY]</span>
               </a>
             </div>
           </div>
@@ -183,7 +194,6 @@ export default function VerifiedProfiles() {
           gap: 1.5rem;
         }
         .profile-card {
-          padding: 1.6rem;
           display: flex;
           flex-direction: column;
         }
@@ -191,18 +201,13 @@ export default function VerifiedProfiles() {
           border-color: rgba(56, 189, 248, 0.4);
         }
         .card-top-bar {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding-bottom: 1rem;
-          margin-bottom: 1rem;
-          border-bottom: 1px solid var(--border-glass);
+          display: none;
         }
         .platform-icon {
           color: var(--primary);
         }
         .platform-name {
-          font-family: var(--font-heading);
+          font-family: var(--font-mono);
           font-weight: 700;
           font-size: 1.05rem;
           color: var(--text-main);
@@ -210,12 +215,13 @@ export default function VerifiedProfiles() {
         .status-pill {
           margin-left: auto;
           font-size: 0.75rem;
-          background: rgba(255, 255, 255, 0.05);
+          background: transparent;
           border: 1px solid var(--border-glass);
           padding: 3px 10px;
-          border-radius: 99px;
+          border-radius: 0;
           color: var(--text-dim);
           font-weight: 600;
+          font-family: var(--font-mono);
         }
         .diamond-badge {
           margin-left: auto;
@@ -224,14 +230,16 @@ export default function VerifiedProfiles() {
           border: 1px solid rgba(56, 189, 248, 0.4);
           color: #38bdf8;
           padding: 3px 10px;
-          border-radius: 99px;
+          border-radius: 0;
           font-weight: 700;
+          font-family: var(--font-mono);
         }
         .card-body {
           display: flex;
           flex-direction: column;
           gap: 0.8rem;
           flex: 1;
+          padding: 1.6rem;
         }
         .profile-user-row {
           display: flex;
@@ -241,27 +249,28 @@ export default function VerifiedProfiles() {
         .user-avatar-mini {
           width: 42px;
           height: 42px;
-          border-radius: 10px;
-          background: var(--primary-light);
-          border: 1px solid var(--primary-glow);
+          border-radius: 0;
+          background: transparent;
+          border: 1px solid var(--primary);
           color: var(--primary);
           display: flex;
           align-items: center;
           justify-content: center;
         }
         .linkedin-bg {
-          background: rgba(10, 102, 194, 0.15);
-          border-color: rgba(10, 102, 194, 0.4);
+          border-color: #0a66c2;
           color: #0a66c2;
         }
         .user-handle {
           font-size: 1.1rem;
           font-weight: 700;
           line-height: 1.2;
+          font-family: var(--font-mono);
         }
         .user-sub {
           font-size: 0.82rem;
           color: var(--text-dim);
+          font-family: var(--font-mono);
         }
         .profile-bio-text {
           font-size: 0.88rem;

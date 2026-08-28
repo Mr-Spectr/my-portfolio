@@ -1,17 +1,18 @@
 export const PORTFOLIO_DATA = {
   profile: {
     name: "Abhay Rawat",
-    title: "Information Science & Data Science Student",
-    institution: "Nitte Meenakshi Institute of Technology · IIT Madras",
-    tagline: "Building trustworthy AI, data, and mobile systems—from retrieval-augmented knowledge agents to financial analytics and real-time applications.",
-    avatar: "./abhay-profile.jpeg",
-    coverBadge: "Open to AI/ML, software engineering & research opportunities",
+    title: "AI & Data Science Engineer | Full-Stack Developer",
+    institution: "Nitte Meenakshi Institute of Technology & IIT Madras",
+    tagline: "Building Enterprise Agentic AI platforms, RAG pipelines, high-performance FastAPI backends, and data-driven intelligence solutions.",
+    avatar: "abhay-avatar.jpg",
+    coverBadge: "Open for AI/ML Roles & Software Engineering Opportunities",
     email: "workwithabhay3006@gmail.com",
+    phone: "+91 7411202198",
     location: "Bengaluru, India",
     credly: "https://www.credly.com/users/abhay-rawat.d65578c3/badges/credly",
     github: "https://github.com/Mr-Spectr",
     linkedin: "https://www.linkedin.com/in/abhay-rawat-790b24288/",
-    bio: "Abhay Rawat is pursuing a B.E. in Information Science & Engineering at Nitte Meenakshi Institute of Technology (CGPA 8.5) alongside a B.Sc. in Data Science & Programming at IIT Madras. His work focuses on agentic AI, secure retrieval, backend systems, data-driven analysis, and Flutter applications."
+    bio: "Abhay Rawat is an Information Science & Engineering scholar at Nitte Meenakshi Institute of Technology (CGPA 8.5) and Data Science scholar at IIT Madras. He specializes in Agentic AI systems, RAG retrieval pipelines, FastAPI microservices, Docker containerization, and Flutter cross-platform applications. He achieved Top 15% rank in the Amazon ML Challenge and Top 5% at the IISc Code Cadets Hackathon."
   },
 
   metrics: [
@@ -28,7 +29,7 @@ export const PORTFOLIO_DATA = {
       title: "Enterprise Agentic AI & RAG",
       desc: "Engineering autonomous retrieval-augmented generation pipelines, role-based access control (RBAC), and Groq LLM API integrations.",
       icon: "Cpu",
-      focusLabel: "Flagship project",
+      papersCount: 3,
       status: "Primary Specialization"
     },
     {
@@ -36,7 +37,7 @@ export const PORTFOLIO_DATA = {
       title: "Data Science & Financial Analytics",
       desc: "Processing financial ratios (PE, PB, Dividend Yield), predictive machine learning modeling, and automated analysis workflows.",
       icon: "Zap",
-      focusLabel: "Analytics platform",
+      papersCount: 4,
       status: "IIT Madras Core"
     },
     {
@@ -44,7 +45,7 @@ export const PORTFOLIO_DATA = {
       title: "Backend Microservices & Docker",
       desc: "FastAPI REST API design, MySQL relational databases, Docker container orchestration, and workflow automation using n8n.",
       icon: "Network",
-      focusLabel: "Systems practice",
+      papersCount: 5,
       status: "Backend Architecture"
     },
     {
@@ -52,7 +53,7 @@ export const PORTFOLIO_DATA = {
       title: "Cross-Platform Mobile Apps",
       desc: "Flutter & Dart application development, Firebase Realtime Firestore synchronization, and OOP state management.",
       icon: "Bot",
-      focusLabel: "Two mobile apps",
+      papersCount: 4,
       status: "Mobile Engineering"
     }
   ],

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, FileDown, Menu, X, Palette } from 'lucide-react';
+import { FileText, Menu, X, Palette } from 'lucide-react';
 
-export default function Navbar({ activeTheme, setTheme }) {
+export default function Navbar({ activeTheme, setTheme, onOpenCv }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [themeDropdown, setThemeDropdown] = useState(false);
@@ -18,16 +18,17 @@ export default function Navbar({ activeTheme, setTheme }) {
     { id: 'default', name: 'Sapphire Indigo', color: '#6366f1' },
     { id: 'emerald', name: 'Emerald Science', color: '#10b981' },
     { id: 'amber', name: 'Sunset Amber', color: '#f59e0b' },
-    { id: 'violet', name: 'Cyber Violet', color: '#a855f7' }
+    { id: 'violet', name: 'Cyber Violet', color: '#a855f7' },
+    { id: 'hacker', name: 'Terminal Green', color: '#10b981' }
   ];
 
   const navLinks = [
-    { name: 'Focus', href: '#research' },
+    { name: 'Research', href: '#research' },
     { name: 'Knowledge Graph', href: '#graph' },
-    { name: 'Project Dossiers', href: '#publications' },
-    { name: 'Selected Work', href: '#projects' },
-    { name: 'Profiles', href: '#profiles' },
-    { name: 'Journey', href: '#timeline' },
+    { name: 'Publications', href: '#publications' },
+    { name: 'Artifacts', href: '#projects' },
+    { name: 'Profiles & GCP', href: '#profiles' },
+    { name: 'Career & Teaching', href: '#timeline' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -35,11 +36,8 @@ export default function Navbar({ activeTheme, setTheme }) {
     <header className={`navbar-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="nav-container">
         <a href="#" className="nav-logo">
-          <div className="logo-icon">
-            <Sparkles size={20} className="logo-sparkle" />
-          </div>
           <span className="logo-text">Abhay Rawat</span>
-          <span className="logo-sub">NMIT · IITM</span>
+          <span className="logo-sub">IIT Madras & NMIT</span>
         </a>
 
         {/* Desktop Nav */}
@@ -54,8 +52,8 @@ export default function Navbar({ activeTheme, setTheme }) {
         <div className="nav-actions">
           {/* Theme Palette Switcher */}
           <div className="theme-switcher-relative">
-            <button
-              className="icon-btn"
+            <button 
+              className="icon-btn" 
               onClick={() => setThemeDropdown(!themeDropdown)}
               title="Change Color Theme"
             >
@@ -82,13 +80,13 @@ export default function Navbar({ activeTheme, setTheme }) {
             )}
           </div>
 
-          <a href="./abhay-rawat-resume.pdf" target="_blank" rel="noreferrer" className="btn-primary btn-sm" aria-label="Download resume">
-            <FileDown size={16} />
-            <span>Resume</span>
-          </a>
+          <button onClick={onOpenCv} className="btn-primary btn-sm">
+            <FileText size={16} />
+            <span>View CV</span>
+          </button>
 
           {/* Mobile menu toggle */}
-          <button
+          <button 
             className="mobile-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -110,17 +108,17 @@ export default function Navbar({ activeTheme, setTheme }) {
               {link.name}
             </a>
           ))}
-          <a
-            href="./abhay-rawat-resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => setMobileMenuOpen(false)}
-            className="btn-primary"
+          <button 
+            onClick={() => {
+              onOpenCv();
+              setMobileMenuOpen(false);
+            }} 
+            className="btn-primary" 
             style={{ width: '100%', marginTop: '1rem' }}
           >
-            <FileDown size={18} />
-            <span>Download Resume</span>
-          </a>
+            <FileText size={18} />
+            <span>View Curriculum Vitae</span>
+          </button>
         </div>
       )}
 
@@ -184,14 +182,17 @@ export default function Navbar({ activeTheme, setTheme }) {
         .desktop-nav {
           display: flex;
           align-items: center;
-          gap: 1.8rem;
+          gap: 1rem;
         }
         .nav-link {
           color: var(--text-muted);
           text-decoration: none;
-          font-size: 0.92rem;
+          font-size: 0.8rem;
           font-weight: 500;
           transition: var(--transition-fast);
+          font-family: var(--font-mono);
+          text-transform: uppercase;
+          white-space: nowrap;
         }
         .nav-link:hover {
           color: var(--primary);
@@ -294,15 +295,9 @@ export default function Navbar({ activeTheme, setTheme }) {
           font-size: 1.05rem;
           font-weight: 600;
         }
-        @media (max-width: 1180px) {
+        @media (max-width: 1120px) {
           .desktop-nav { display: none; }
           .mobile-toggle { display: block; }
-        }
-        @media (max-width: 560px) {
-          .navbar-header, .navbar-header.is-scrolled { padding-left: 1rem; padding-right: 1rem; }
-          .logo-sub, .nav-actions > .btn-primary span { display: none; }
-          .nav-actions { gap: 7px; }
-          .btn-sm { padding: 9px; }
         }
       `}</style>
     </header>

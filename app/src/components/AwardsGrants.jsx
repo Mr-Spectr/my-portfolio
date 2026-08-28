@@ -6,9 +6,9 @@ export default function AwardsGrants({ awards }) {
     <section className="awards-section">
       <div className="awards-container">
         <div className="section-header">
-          <span className="tag">Highlights</span>
-          <h2>Awards & Certifications</h2>
-          <p>Selected challenge results, hackathon participation, and verified technical learning credentials.</p>
+          <span className="tag">Scientific Honors</span>
+          <h2>Awards, Fellowships & Grants</h2>
+          <p>Recognition from top academic societies, conferences, and competitive national scientific research foundations.</p>
         </div>
 
         <div className="awards-grid">

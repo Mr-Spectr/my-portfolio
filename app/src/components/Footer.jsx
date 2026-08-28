@@ -22,8 +22,8 @@ export default function Footer({ profile }) {
           <div className="footer-nav">
             <a href="#research" className="footer-link">Research</a>
             <a href="#graph" className="footer-link">Knowledge Graph</a>
-            <a href="#publications" className="footer-link">Project Dossiers</a>
-            <a href="#projects" className="footer-link">Selected Work</a>
+            <a href="#publications" className="footer-link">Publications</a>
+            <a href="#projects" className="footer-link">Artifacts</a>
             <a href="#timeline" className="footer-link">Timeline</a>
             <a href="#contact" className="footer-link">Contact</a>
           </div>
@@ -35,12 +35,12 @@ export default function Footer({ profile }) {
 
         <div className="footer-bottom">
           <div className="copyright-text">
-            © {new Date().getFullYear()} {profile.name}. Built with curiosity and care.
+            © {new Date().getFullYear()} {profile.name}. Designed and built by Abhay Rawat.
           </div>
 
           <div className="footer-badges">
-            <span className="footer-badge">NMIT · IIT Madras</span>
-            <span className="footer-badge">AI · Data · Systems</span>
+            <span className="footer-badge">NMIT Bengaluru</span>
+            <span className="footer-badge">IIT Madras</span>
           </div>
         </div>
       </div>
