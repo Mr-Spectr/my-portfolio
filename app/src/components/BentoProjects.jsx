@@ -1,5 +1,5 @@
 import React from 'react';
-import { CalendarDays, ExternalLink, Activity } from 'lucide-react';
+import { Star, GitFork, ExternalLink, Activity } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
 export default function BentoProjects({ projects }) {
@@ -7,9 +7,9 @@ export default function BentoProjects({ projects }) {
     <section id="projects" className="bento-section">
       <div className="bento-container">
         <div className="section-header">
-          <span className="tag">Selected engineering work</span>
-          <h2>Things I have built and documented.</h2>
-          <p>Four projects across secure AI systems, financial analytics, and mobile application development.</p>
+          <span className="tag">Selected Work</span>
+          <h2>Projects & Implementations</h2>
+          <p>Practical AI, analytics, backend, and mobile applications built to explore real engineering problems.</p>
         </div>
 
         <div className="bento-grid">
@@ -24,8 +24,12 @@ export default function BentoProjects({ projects }) {
               <div className="bento-body">
                 <div className="bento-top-meta">
                   <div className="bento-stars">
-                    <CalendarDays size={14} className="star-icon" />
-                    <span>{proj.period}</span>
+                    <Star size={14} className="star-icon" />
+                    <span>{proj.stars} Stars</span>
+                  </div>
+                  <div className="bento-forks">
+                    <GitFork size={14} />
+                    <span>{proj.forks} Forks</span>
                   </div>
                 </div>
 
@@ -59,7 +63,7 @@ export default function BentoProjects({ projects }) {
                   {proj.demoUrl && proj.demoUrl !== '#' && (
                     <a href={proj.demoUrl} target="_blank" rel="noreferrer" className="bento-btn primary">
                       <ExternalLink size={15} />
-                      <span>Open Project</span>
+                      <span>View Project</span>
                     </a>
                   )}
                 </div>

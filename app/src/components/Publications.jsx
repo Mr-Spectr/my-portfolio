@@ -1,132 +1,565 @@
-import React, { useMemo, useState } from 'react';
-import { BookOpen, ChevronDown, ChevronUp, Code2, ExternalLink, Search, X } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  FileText,
+  Search,
+  Quote,
+  ExternalLink,
+  Code,
+  Award,
+  ChevronDown,
+  ChevronUp,
+  Copy,
+  Check,
+  BookOpen,
+  X
+} from 'lucide-react';
 
-export default function Publications({ projects }) {
+export default function Publications({ publications, onCopyBibtex }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [expandedId, setExpandedId] = useState(null);
+  const [expandedAbstracts, setExpandedAbstracts] = useState({});
+  const [activeBibtexModal, setActiveBibtexModal] = useState(null);
+  const [copiedId, setCopiedId] = useState(null);
 
-  const categories = ['All', ...new Set(projects.map((project) => project.category))];
-  const filteredProjects = useMemo(() => projects.filter((project) => {
-    const term = searchTerm.toLowerCase();
-    const matchesSearch = [project.title, project.category, project.tagline, ...project.tags]
-      .join(' ')
-      .toLowerCase()
-      .includes(term);
-    return matchesSearch && (selectedCategory === 'All' || project.category === selectedCategory);
-  }), [projects, searchTerm, selectedCategory]);
+  const categories = ['All', ...new Set(publications.map((publication) => publication.category))];
+
+  const toggleAbstract = (id) => {
+    setExpandedAbstracts(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const filteredPubs = publications.filter(pub => {
+    const matchesSearch = pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          pub.abstract.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          pub.venue.toLowerCase().includes(searchTerm.toLowerCase());
+
+    if (selectedCategory === 'All') return matchesSearch;
+    return matchesSearch && pub.category === selectedCategory;
+  });
+
+  const handleCopyCode = (text, id) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    onCopyBibtex('BibTeX citation copied to clipboard!');
+    setTimeout(() => setCopiedId(null), 2500);
+  };
 
   return (
-    <section id="case-studies" className="pub-section">
+    <section id="publications" className="pub-section">
       <div className="pub-container">
         <div className="section-header">
-          <span className="tag">Project dossiers</span>
-          <h2>Applied work, clearly documented.</h2>
-          <p>Browse the problem spaces, tools, and implementation themes behind my selected engineering projects.</p>
+          <span className="tag">Project Dossiers</span>
+          <h2>Selected Technical Work</h2>
+          <p>Implementation notes, design decisions, and repository links for selected AI, data, and mobile projects.</p>
         </div>
 
+        {/* Filter Controls & Search */}
         <div className="pub-controls glass-card">
           <div className="search-box">
             <Search size={18} className="search-icon" />
             <input
-              type="search"
-              placeholder="Search projects, tools, or focus areas…"
+              type="text"
+              placeholder="Search by project title, summary, or technology..."
               value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
-              aria-label="Search project dossiers"
             />
-            {searchTerm && <button onClick={() => setSearchTerm('')} className="clear-search" aria-label="Clear search"><X size={16} /></button>}
+            {searchTerm && (
+              <button onClick={() => setSearchTerm('')} className="clear-search">
+                <X size={16} />
+              </button>
+            )}
           </div>
-          <div className="category-pills" aria-label="Filter projects by category">
-            {categories.map((category) => (
-              <button key={category} className={`cat-pill ${selectedCategory === category ? 'active' : ''}`} onClick={() => setSelectedCategory(category)}>
-                {category}
+
+          <div className="category-pills">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                className={`cat-pill ${selectedCategory === cat ? 'active' : ''}`}
+                onClick={() => setSelectedCategory(cat)}
+              >
+                {cat}
               </button>
             ))}
           </div>
         </div>
 
+        {/* Publications List */}
         <div className="pub-list">
-          {filteredProjects.length === 0 ? (
-            <div className="no-pubs glass-card"><BookOpen size={40} className="no-pubs-icon" /><p>No project dossier matches “{searchTerm}”.</p></div>
-          ) : filteredProjects.map((project) => {
-            const expanded = expandedId === project.id;
-            return (
-              <article key={project.id} className={`pub-card glass-card ${project.featured ? 'highlighted-card' : ''}`}>
+          {filteredPubs.length === 0 ? (
+            <div className="no-pubs glass-card">
+              <BookOpen size={40} className="no-pubs-icon" />
+              <p>No publications matching "{searchTerm}". Try another search query.</p>
+            </div>
+          ) : (
+            filteredPubs.map(pub => (
+              <div key={pub.id} className={`pub-card glass-card ${pub.isHighlighted ? 'highlighted-card' : ''}`}>
                 <div className="pub-header">
                   <div className="pub-badges">
-                    <span className="badge-pill">{project.period}</span>
-                    <span className="pub-type-badge">{project.category}</span>
-                    {project.featured && <span className="pub-award-badge">Featured work</span>}
+                    <span className="badge-pill">{pub.year}</span>
+                    <span className="pub-type-badge">{pub.type}</span>
+                    <span className="pub-category-badge">{pub.category}</span>
+                    {pub.award && (
+                      <span className="pub-award-badge">
+                        <Award size={13} />
+                        {pub.award}
+                      </span>
+                    )}
                   </div>
-                  <a className="source-mark" href={project.githubUrl} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} source code`}><Code2 size={16} /> Source</a>
+
+                  {pub.citations != null && (
+                    <div className="pub-citations">
+                      <Quote size={14} />
+                      <span>{pub.citations} Citations</span>
+                    </div>
+                  )}
                 </div>
 
-                <h3 className="pub-title">{project.title}</h3>
-                <p className="pub-summary">{project.tagline}</p>
+                <h3 className="pub-title">{pub.title}</h3>
 
-                <button onClick={() => setExpandedId(expanded ? null : project.id)} className="toggle-abstract-btn" aria-expanded={expanded}>
-                  <span>{expanded ? 'Hide technical focus' : 'View technical focus'}</span>
-                  {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                </button>
+                <div className="pub-authors">
+                  {pub.authors.map((author, index) => (
+                    <span key={index} className={author === "Abhay Rawat" ? "author-highlight" : ""}>
+                      {author}{index < pub.authors.length - 1 ? ", " : ""}
+                    </span>
+                  ))}
+                </div>
 
-                {expanded && (
+                <div className="pub-venue">{pub.venue}</div>
+
+                {/* Abstract Expander */}
+                <div className="pub-abstract-row">
+                  <button
+                    onClick={() => toggleAbstract(pub.id)}
+                    className="toggle-abstract-btn"
+                  >
+                    <span>{expandedAbstracts[pub.id] ? "Hide Abstract" : "Read Abstract"}</span>
+                    {expandedAbstracts[pub.id] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  </button>
+                </div>
+
+                {expandedAbstracts[pub.id] && (
                   <div className="abstract-content">
-                    <p>Key tools and concepts</p>
-                    <div className="dossier-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                    <div className="dossier-stats">{Object.entries(project.stats).map(([label, value]) => <span key={label}><b>{label}</b> {value}</span>)}</div>
+                    <p>{pub.abstract}</p>
                   </div>
                 )}
 
+                {/* Footer Action Links & BibTeX Trigger */}
                 <div className="pub-footer">
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="pub-action-btn"><Code2 size={15} /> Source code</a>
-                  <a href={project.demoUrl} target="_blank" rel="noreferrer" className="pub-action-btn"><ExternalLink size={15} /> Project link</a>
+                  <div className="pub-action-links">
+                    <a href={pub.pdfUrl} target="_blank" rel="noreferrer" className="pub-action-btn">
+                      <FileText size={15} />
+                      <span>Project Link</span>
+                    </a>
+                    {pub.codeUrl && (
+                      <a href={pub.codeUrl} target="_blank" rel="noreferrer" className="pub-action-btn">
+                        <Code size={15} />
+                        <span>Code</span>
+                      </a>
+                    )}
+                    {pub.demoUrl && pub.demoUrl !== '#' && (
+                      <a href={pub.demoUrl} target="_blank" rel="noreferrer" className="pub-action-btn">
+                        <ExternalLink size={15} />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() => setActiveBibtexModal(pub)}
+                    className="bibtex-btn"
+                  >
+                    <Quote size={14} />
+                    <span>Cite (BibTeX)</span>
+                  </button>
                 </div>
-              </article>
-            );
-          })}
+              </div>
+            ))
+          )}
         </div>
       </div>
 
+      {/* BibTeX Modal */}
+      {activeBibtexModal && (
+        <div className="modal-backdrop" onClick={() => setActiveBibtexModal(null)}>
+          <div className="bibtex-modal glass-card" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <div className="modal-title">
+                <Quote size={18} className="quote-icon" />
+                <span>BibTeX Citation</span>
+              </div>
+              <button onClick={() => setActiveBibtexModal(null)} className="close-modal-btn">
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <p className="bibtex-pub-title">{activeBibtexModal.title}</p>
+              <div className="bibtex-code-wrapper">
+                <pre className="bibtex-code">{activeBibtexModal.bibtex}</pre>
+                <button
+                  onClick={() => handleCopyCode(activeBibtexModal.bibtex, activeBibtexModal.id)}
+                  className="copy-bibtex-floating"
+                >
+                  {copiedId === activeBibtexModal.id ? (
+                    <>
+                      <Check size={16} color="#10b981" />
+                      <span style={{ color: '#10b981' }}>Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={16} />
+                      <span>Copy BibTeX</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style>{`
-        .pub-section { padding: 5rem 2rem; position: relative; }
-        .pub-container { max-width: 1120px; margin: 0 auto; }
-        .pub-controls { padding: 1.2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
-        .search-box { position: relative; width: 100%; }
-        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-dim); }
-        .search-input { width: 100%; padding: 12px 40px 12px 42px; background: rgba(9, 13, 22, 0.6); border: 1px solid var(--border-glass); border-radius: var(--radius-md); color: var(--text-main); font-size: 0.95rem; outline: none; }
-        .search-input:focus { border-color: var(--primary); box-shadow: 0 0 12px var(--primary-glow); }
-        .clear-search { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-dim); cursor: pointer; }
-        .category-pills, .dossier-tags, .dossier-stats { display: flex; flex-wrap: wrap; gap: 8px; }
-        .cat-pill { padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.04); border: 1px solid var(--border-glass); color: var(--text-muted); font-size: .82rem; font-weight: 600; cursor: pointer; transition: var(--transition-fast); }
-        .cat-pill:hover, .cat-pill.active { background: var(--primary-light); color: var(--primary); border-color: var(--primary-glow); }
-        .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
-        .no-pubs { padding: 3rem; text-align: center; color: var(--text-muted); display: grid; place-items: center; gap: 1rem; }
-        .no-pubs-icon { color: var(--text-dim); }
-        .pub-card { padding: 1.8rem; position: relative; }
-        .highlighted-card { border-left: 4px solid var(--primary); }
-        .pub-header, .pub-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-        .pub-header { margin-bottom: .85rem; }
-        .pub-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-        .pub-type-badge, .pub-award-badge, .source-mark { border-radius: 6px; font-size: .78rem; font-weight: 600; }
-        .pub-type-badge { padding: 4px 9px; color: var(--accent); background: rgba(255,255,255,.06); border: 1px solid var(--border-glass); }
-        .pub-award-badge { padding: 4px 9px; color: #fbbf24; background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.3); }
-        .source-mark { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); text-decoration: none; }
-        .source-mark:hover { color: var(--primary); }
-        .pub-title { font-size: 1.35rem; margin-bottom: .6rem; }
-        .pub-summary { max-width: 78ch; color: var(--text-muted); font-size: .95rem; line-height: 1.68; margin-bottom: 1rem; }
-        .toggle-abstract-btn { display: inline-flex; align-items: center; gap: 5px; padding: 0; border: 0; background: none; color: var(--primary); font-size: .86rem; font-weight: 700; cursor: pointer; }
-        .toggle-abstract-btn:hover { text-decoration: underline; }
-        .abstract-content { margin: 1rem 0 1.3rem; padding: 1rem; border: 1px solid var(--border-glass); border-radius: var(--radius-sm); background: rgba(9,13,22,.58); color: var(--text-muted); animation: dossierOpen .2s ease-out; }
-        .abstract-content p { color: var(--text-main); font-size: .82rem; font-weight: 700; margin-bottom: .7rem; text-transform: uppercase; letter-spacing: .05em; }
-        .dossier-tags span, .dossier-stats span { padding: 4px 8px; border-radius: 5px; background: rgba(255,255,255,.05); border: 1px solid var(--border-glass); color: var(--text-muted); font-size: .78rem; }
-        .dossier-stats { margin-top: .75rem; }
-        .dossier-stats b { color: var(--primary); margin-right: 4px; }
-        .pub-footer { border-top: 1px solid var(--border-glass); padding-top: 1rem; justify-content: flex-start; }
-        .pub-action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-main); font-size: .82rem; font-weight: 600; text-decoration: none; transition: var(--transition-fast); }
-        .pub-action-btn:hover { background: var(--primary-light); border-color: var(--primary-glow); color: var(--primary); }
-        @keyframes dossierOpen { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+        .pub-section {
+          padding: 5rem 2rem;
+          position: relative;
+        }
+        .pub-container {
+          max-width: 1280px;
+          margin: 0 auto;
+        }
+        .pub-controls {
+          padding: 1.2rem;
+          margin-bottom: 2.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .search-box {
+          position: relative;
+          width: 100%;
+        }
+        .search-icon {
+          position: absolute;
+          left: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--text-dim);
+        }
+        .search-input {
+          width: 100%;
+          padding: 12px 40px 12px 42px;
+          background: rgba(9, 13, 22, 0.6);
+          border: 1px solid var(--border-glass);
+          border-radius: var(--radius-md);
+          color: var(--text-main);
+          font-size: 0.95rem;
+          outline: none;
+          transition: var(--transition-fast);
+        }
+        .search-input:focus {
+          border-color: var(--primary);
+          box-shadow: 0 0 12px var(--primary-glow);
+        }
+        .clear-search {
+          position: absolute;
+          right: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          color: var(--text-dim);
+          cursor: pointer;
+        }
+        .category-pills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .cat-pill {
+          padding: 6px 14px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--border-glass);
+          color: var(--text-muted);
+          font-size: 0.85rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: var(--transition-fast);
+        }
+        .cat-pill:hover, .cat-pill.active {
+          background: var(--primary-light);
+          color: var(--primary);
+          border-color: var(--primary-glow);
+        }
+
+        .pub-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .no-pubs {
+          padding: 3rem;
+          text-align: center;
+          color: var(--text-muted);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+        }
+        .no-pubs-icon {
+          color: var(--text-dim);
+        }
+        .pub-card {
+          padding: 1.8rem;
+          position: relative;
+        }
+        .highlighted-card {
+          border-left: 4px solid var(--primary);
+        }
+        .pub-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.8rem;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .pub-badges {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .pub-type-badge {
+          font-size: 0.78rem;
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid var(--border-glass);
+          padding: 3px 10px;
+          border-radius: 6px;
+          color: var(--accent);
+          font-weight: 600;
+        }
+        .pub-category-badge {
+          font-size: 0.78rem;
+          color: var(--text-dim);
+          background: rgba(255, 255, 255, 0.03);
+          padding: 3px 8px;
+          border-radius: 6px;
+        }
+        .pub-award-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          background: rgba(245, 158, 11, 0.15);
+          color: #f59e0b;
+          border: 1px solid rgba(245, 158, 11, 0.3);
+          padding: 3px 10px;
+          border-radius: 999px;
+          font-size: 0.78rem;
+          font-weight: 700;
+        }
+        .pub-citations {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.82rem;
+          color: var(--accent);
+          font-weight: 600;
+          background: var(--primary-light);
+          padding: 4px 10px;
+          border-radius: 6px;
+        }
+        .pub-title {
+          font-size: 1.3rem;
+          font-weight: 700;
+          line-height: 1.35;
+          margin-bottom: 0.6rem;
+          color: var(--text-main);
+        }
+        .pub-authors {
+          font-size: 0.95rem;
+          color: var(--text-muted);
+          margin-bottom: 0.4rem;
+        }
+        .author-highlight {
+          color: var(--primary);
+          font-weight: 700;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .pub-venue {
+          font-size: 0.9rem;
+          font-style: italic;
+          color: var(--text-dim);
+          margin-bottom: 1rem;
+        }
+        .pub-abstract-row {
+          margin-bottom: 0.8rem;
+        }
+        .toggle-abstract-btn {
+          background: none;
+          border: none;
+          color: var(--primary);
+          font-size: 0.85rem;
+          font-weight: 600;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          padding: 0;
+        }
+        .toggle-abstract-btn:hover {
+          text-decoration: underline;
+        }
+        .abstract-content {
+          background: rgba(9, 13, 22, 0.7);
+          border: 1px solid var(--border-glass);
+          border-radius: var(--radius-sm);
+          padding: 1rem;
+          margin-bottom: 1.2rem;
+          font-size: 0.9rem;
+          line-height: 1.65;
+          color: var(--text-muted);
+          animation: fadeIn 0.2s ease-out;
+        }
+        .pub-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          pt-2;
+          border-top: 1px solid var(--border-glass);
+          padding-top: 1rem;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        .pub-action-links {
+          display: flex;
+          gap: 10px;
+        }
+        .pub-action-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 14px;
+          border-radius: var(--radius-sm);
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--border-glass);
+          color: var(--text-main);
+          font-size: 0.82rem;
+          font-weight: 600;
+          text-decoration: none;
+          transition: var(--transition-fast);
+        }
+        .pub-action-btn:hover {
+          background: var(--primary-light);
+          border-color: var(--primary-glow);
+          color: var(--primary);
+        }
+        .bibtex-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 14px;
+          border-radius: var(--radius-sm);
+          background: var(--primary-light);
+          border: 1px solid var(--primary-glow);
+          color: var(--primary);
+          font-size: 0.82rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: var(--transition-fast);
+        }
+        .bibtex-btn:hover {
+          background: var(--primary);
+          color: #fff;
+        }
+
+        /* Modal */
+        .modal-backdrop {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.75);
+          backdrop-filter: blur(8px);
+          z-index: 200;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem;
+        }
+        .bibtex-modal {
+          width: 100%;
+          max-width: 620px;
+          padding: 1.8rem;
+          animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1.2rem;
+        }
+        .modal-title {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-family: var(--font-heading);
+          font-weight: 700;
+          font-size: 1.15rem;
+        }
+        .quote-icon {
+          color: var(--primary);
+        }
+        .close-modal-btn {
+          background: none;
+          border: none;
+          color: var(--text-dim);
+          cursor: pointer;
+        }
+        .close-modal-btn:hover { color: #fff; }
+        .bibtex-pub-title {
+          font-size: 0.95rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: var(--text-main);
+        }
+        .bibtex-code-wrapper {
+          position: relative;
+        }
+        .bibtex-code {
+          font-family: var(--font-mono);
+          font-size: 0.82rem;
+          background: #060911;
+          color: #38bdf8;
+          padding: 1.2rem;
+          border-radius: var(--radius-md);
+          border: 1px solid var(--border-glass);
+          overflow-x: auto;
+          line-height: 1.5;
+        }
+        .copy-bibtex-floating {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          background: rgba(15, 23, 42, 0.9);
+          border: 1px solid var(--border-glass);
+          border-radius: var(--radius-sm);
+          color: var(--text-main);
+          font-size: 0.8rem;
+          font-weight: 600;
+          cursor: pointer;
+        }
+        .copy-bibtex-floating:hover {
+          border-color: var(--primary-glow);
+        }
+
+        @keyframes scaleUp {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+        }
       `}</style>
     </section>
   );

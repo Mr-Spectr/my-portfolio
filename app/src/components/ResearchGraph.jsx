@@ -4,6 +4,13 @@ import { Network, Info, Sparkles } from 'lucide-react';
 export default function ResearchGraph({ graphData, researchDomains }) {
   const canvasRef = useRef(null);
   const [selectedNode, setSelectedNode] = useState(null);
+  const [canvasVersion, setCanvasVersion] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => setCanvasVersion((version) => version + 1);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -14,7 +21,8 @@ export default function ResearchGraph({ graphData, researchDomains }) {
 
     // Handle high DPI display
     const dpr = window.devicePixelRatio || 1;
-    const width = canvas.parentElement.clientWidth;
+    const parent = canvas.parentElement;
+    const width = parent && parent.clientWidth ? parent.clientWidth : 800;
     const height = 480;
 
     canvas.width = width * dpr;
@@ -136,7 +144,7 @@ export default function ResearchGraph({ graphData, researchDomains }) {
       cancelAnimationFrame(animationFrameId);
       canvas.removeEventListener('click', handleCanvasClick);
     };
-  }, [graphData, selectedNode]);
+  }, [graphData, selectedNode, canvasVersion]);
 
   return (
     <section id="graph" className="graph-section">
@@ -144,7 +152,7 @@ export default function ResearchGraph({ graphData, researchDomains }) {
         <div className="section-header">
           <span className="tag">Interactive Knowledge Map</span>
           <h2>Research Domain Taxonomy</h2>
-          <p>Explore the connections between the tools, systems, and project themes that shape my current work.</p>
+          <p>Click a node to inspect the technologies and project themes connected to it.</p>
         </div>
 
         {/* Research Focus Cards Grid */}
@@ -170,7 +178,7 @@ export default function ResearchGraph({ graphData, researchDomains }) {
             </div>
             <div className="graph-hint">
               <Info size={14} />
-              <span>Click nodes to inspect related work</span>
+              <span>Click nodes to inspect related skills</span>
             </div>
           </div>
 
@@ -183,10 +191,10 @@ export default function ResearchGraph({ graphData, researchDomains }) {
                   <Sparkles size={16} className="node-sparkle" />
                   <h4>{selectedNode.label}</h4>
                 </div>
-                <p>A connected focus area within Abhay Rawat's engineering portfolio.</p>
+                <p>A connected capability in Abhay Rawat's portfolio.</p>
                 <div className="node-stats">
                   <span className="node-stat-pill">{selectedNode.val}</span>
-                  <span className="node-stat-pill">Current focus</span>
+                  <span className="node-stat-pill">Active Project</span>
                 </div>
                 <button onClick={() => setSelectedNode(null)} className="node-close-btn">Close</button>
               </div>

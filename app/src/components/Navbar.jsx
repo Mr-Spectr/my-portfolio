@@ -24,8 +24,9 @@ export default function Navbar({ activeTheme, setTheme }) {
   const navLinks = [
     { name: 'Focus', href: '#research' },
     { name: 'Knowledge Graph', href: '#graph' },
-    { name: 'Project Dossiers', href: '#case-studies' },
+    { name: 'Project Dossiers', href: '#publications' },
     { name: 'Selected Work', href: '#projects' },
+    { name: 'Profiles', href: '#profiles' },
     { name: 'Journey', href: '#timeline' },
     { name: 'Contact', href: '#contact' }
   ];
@@ -113,6 +114,7 @@ export default function Navbar({ activeTheme, setTheme }) {
             href="./abhay-rawat-resume.pdf"
             target="_blank"
             rel="noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
             className="btn-primary"
             style={{ width: '100%', marginTop: '1rem' }}
           >
@@ -292,17 +294,15 @@ export default function Navbar({ activeTheme, setTheme }) {
           font-size: 1.05rem;
           font-weight: 600;
         }
-        @media (max-width: 992px) {
+        @media (max-width: 1180px) {
           .desktop-nav { display: none; }
           .mobile-toggle { display: block; }
         }
-        @media (max-width: 520px) {
-          .navbar-header, .navbar-header.is-scrolled { padding: 0.7rem 0.85rem; }
-          .logo-sub { display: none; }
-          .logo-text { font-size: 1.03rem; }
-          .nav-actions { gap: 8px; }
-          .nav-actions .btn-sm { padding: 8px 11px; }
-          .nav-actions .btn-sm span { display: none; }
+        @media (max-width: 560px) {
+          .navbar-header, .navbar-header.is-scrolled { padding-left: 1rem; padding-right: 1rem; }
+          .logo-sub, .nav-actions > .btn-primary span { display: none; }
+          .nav-actions { gap: 7px; }
+          .btn-sm { padding: 9px; }
         }
       `}</style>
     </header>

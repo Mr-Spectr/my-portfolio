@@ -52,7 +52,7 @@ export default function Hero({ profile }) {
 
             {/* CTA Buttons */}
             <div className="hero-cta-group">
-              <a href="#case-studies" className="btn-primary">
+              <a href="#publications" className="btn-primary">
                 <BookOpen size={18} />
                 <span>Explore Project Dossiers</span>
               </a>
@@ -66,7 +66,7 @@ export default function Hero({ profile }) {
               </a>
             </div>
 
-            {/* Professional profiles */}
+            {/* Scholar & Code Badges */}
             <div className="hero-social-row">
               <a href={profile.credly} target="_blank" rel="noreferrer" className="scholar-btn">
                 <BookOpen size={16} />
@@ -128,7 +128,6 @@ export default function Hero({ profile }) {
           border-radius: 50%;
           filter: blur(100px);
           opacity: 0.25;
-          animation: driftOrb 16s ease-in-out infinite alternate;
         }
         .orb-1 {
           width: 450px;
@@ -143,7 +142,6 @@ export default function Hero({ profile }) {
           background: var(--accent);
           bottom: 0;
           right: -50px;
-          animation-delay: -8s;
         }
         .grid-overlay {
           position: absolute;
@@ -354,13 +352,6 @@ export default function Hero({ profile }) {
           padding: 3px 8px;
           border-radius: 6px;
           color: var(--text-muted);
-        }
-        @keyframes driftOrb {
-          from { transform: translate3d(0, 0, 0) scale(1); }
-          to { transform: translate3d(55px, 34px, 0) scale(1.14); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .glow-orb, .avatar-img { animation: none; transition: none; }
         }
 
         @media (max-width: 992px) {

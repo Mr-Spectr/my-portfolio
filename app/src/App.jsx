@@ -12,8 +12,6 @@ import AwardsGrants from './components/AwardsGrants';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import { CheckCircle } from 'lucide-react';
-import AmbientParticles from './components/AmbientParticles';
-import ScrollProgress from './components/ScrollProgress';
 
 export default function App() {
   const [theme, setTheme] = useState('default');
@@ -33,8 +31,6 @@ export default function App() {
 
   return (
     <div className="app-main">
-      <AmbientParticles />
-      <ScrollProgress />
       <Navbar
         activeTheme={theme}
         setTheme={setTheme}
@@ -55,7 +51,8 @@ export default function App() {
         />
 
         <Publications
-          projects={PORTFOLIO_DATA.projects}
+          publications={PORTFOLIO_DATA.publications}
+          onCopyBibtex={addToast}
         />
 
         <BentoProjects

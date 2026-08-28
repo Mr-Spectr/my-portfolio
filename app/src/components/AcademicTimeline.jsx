@@ -8,9 +8,9 @@ export default function AcademicTimeline({ timeline, teaching }) {
     <section id="timeline" className="timeline-section">
       <div className="timeline-container">
         <div className="section-header">
-          <span className="tag">Academic journey</span>
-          <h2>Study, practice, and continuous learning.</h2>
-          <p>A dual-degree academic path alongside hands-on work in AI, data systems, and mobile applications.</p>
+          <span className="tag">Academic Journey</span>
+          <h2>Education, Projects & Learning</h2>
+          <p>Current academic work, selected projects, and learning credentials that shape my technical practice.</p>
         </div>
 
         {/* Tab Buttons */}
@@ -20,14 +20,14 @@ export default function AcademicTimeline({ timeline, teaching }) {
             onClick={() => setActiveTab('career')}
           >
             <Briefcase size={16} />
-            <span>Education & Work</span>
+            <span>Education & Projects</span>
           </button>
           <button
             className={`timeline-tab-btn ${activeTab === 'teaching' ? 'active' : ''}`}
             onClick={() => setActiveTab('teaching')}
           >
             <BookOpen size={16} />
-            <span>Coursework & Credentials ({teaching.length})</span>
+            <span>Learning Credentials ({teaching.length})</span>
           </button>
         </div>
 
@@ -62,7 +62,7 @@ export default function AcademicTimeline({ timeline, teaching }) {
             ))}
           </div>
         ) : (
-          /* Coursework & credentials grid */
+          /* Learning credentials grid */
           <div className="teaching-grid">
             {teaching.map((course, idx) => (
               <div key={idx} className="teaching-card glass-card">
@@ -79,8 +79,8 @@ export default function AcademicTimeline({ timeline, teaching }) {
                 </div>
 
                 <div className="course-footer">
-                  <a href={course.syllabusUrl} className="syllabus-link">
-                    <span>View credentials</span>
+                  <a href={course.syllabusUrl} target="_blank" rel="noreferrer" className="syllabus-link">
+                    <span>View Credential</span>
                     <ExternalLink size={13} />
                   </a>
                 </div>

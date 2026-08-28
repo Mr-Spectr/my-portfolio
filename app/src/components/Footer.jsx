@@ -20,11 +20,11 @@ export default function Footer({ profile }) {
           </div>
 
           <div className="footer-nav">
-            <a href="#research" className="footer-link">Focus</a>
+            <a href="#research" className="footer-link">Research</a>
             <a href="#graph" className="footer-link">Knowledge Graph</a>
-            <a href="#case-studies" className="footer-link">Project Dossiers</a>
+            <a href="#publications" className="footer-link">Project Dossiers</a>
             <a href="#projects" className="footer-link">Selected Work</a>
-            <a href="#timeline" className="footer-link">Journey</a>
+            <a href="#timeline" className="footer-link">Timeline</a>
             <a href="#contact" className="footer-link">Contact</a>
           </div>
 
@@ -40,7 +40,7 @@ export default function Footer({ profile }) {
 
           <div className="footer-badges">
             <span className="footer-badge">NMIT · IIT Madras</span>
-            <span className="footer-badge">AI · data · systems</span>
+            <span className="footer-badge">AI · Data · Systems</span>
           </div>
         </div>
       </div>

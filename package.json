@@ -4,12 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 5173",
-    "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview --host 0.0.0.0 --port 5173",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "dev": "npm --prefix app run dev",
+    "build": "npm --prefix app run build",
+    "lint": "npm --prefix app run lint",
+    "preview": "npm --prefix app run preview"
   },
   "dependencies": {
     "lucide-react": "^1.31.0",

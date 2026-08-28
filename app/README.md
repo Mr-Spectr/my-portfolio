@@ -5,8 +5,8 @@ This directory contains the editable React/Vite source for Abhay Rawat’s portf
 Run the site locally:
 
 ```powershell
-pnpm install
-pnpm run dev
+npm ci
+npm run dev
 ```
 
-Before publishing, run `pnpm run lint` and `pnpm run build`, then copy `dist/` to the repository root. The root is intentionally a static production bundle because GitHub Pages cannot compile JSX or Vite source files at request time.
+Before publishing, run `npm run lint` and `npm run build`, then copy `dist/` to the repository root. The root is intentionally a static production bundle because GitHub Pages cannot compile JSX or Vite source files at request time.
