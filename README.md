@@ -9,7 +9,7 @@
   <a href="https://github.com/Mr-Spectr"><img src="https://img.shields.io/badge/GitHub-Mr--Spectr-0F172A?style=flat-square&labelColor=0F172A&color=64748B" alt="GitHub" /></a>
 </p>
 
-<p align="center"><strong>AI & Data Science Engineer · Full-Stack Developer · Bengaluru, India</strong></p>
+<p align="center"><strong>AI/ML & Data Science Engineer · Cloud Engineer · Bengaluru, India</strong></p>
 
 ## ◈ About
 

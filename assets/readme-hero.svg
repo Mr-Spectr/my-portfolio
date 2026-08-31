@@ -38,7 +38,7 @@
   <g transform="translate(184 80)">
     <text fill="#B9F6DA" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" letter-spacing="2.7">PORTFOLIO / PROFILE</text>
     <text y="62" fill="#F4F8FC" font-family="Georgia, serif" font-size="47" font-weight="700">Abhay Rawat</text>
-    <text y="103" fill="#A9BAD0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">AI &amp; DATA SCIENCE ENGINEER  •  FULL-STACK DEVELOPER</text>
+    <text y="103" fill="#A9BAD0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">AI/ML &amp; DATA SCIENCE ENGINEER  •  CLOUD ENGINEER</text>
     <rect y="132" width="390" height="1" fill="url(#accent)" fill-opacity="0.8"/>
     <text y="164" fill="#7F94AE" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">AGENTIC AI  /  RAG SYSTEMS  /  DATA PRODUCTS</text>
   </g>

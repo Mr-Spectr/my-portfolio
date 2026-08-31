@@ -34,7 +34,7 @@ export default function ContactSection({ profile, onToast }) {
         <div className="section-header">
           <span className="tag">Get In Touch</span>
           <h2>Let’s Build Something Meaningful</h2>
-          <p>Reach out for AI/ML collaborations, full-stack projects, internship opportunities, or a thoughtful technical conversation.</p>
+          <p>Reach out for AI/ML, data, cloud, or backend engineering collaborations, internship opportunities, or a thoughtful technical conversation.</p>
         </div>
 
         <div className="contact-grid">

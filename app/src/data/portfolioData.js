@@ -1,11 +1,11 @@
 export const PORTFOLIO_DATA = {
   profile: {
     name: "Abhay Rawat",
-    title: "AI & Data Science Engineer | Full-Stack Developer",
+    title: "AI/ML & Data Science Engineer | Cloud Engineer",
     institution: "Nitte Meenakshi Institute of Technology & IIT Madras",
-    tagline: "Building Enterprise Agentic AI platforms, RAG pipelines, high-performance FastAPI backends, and data-driven intelligence solutions.",
+    tagline: "Building agentic AI platforms, RAG pipelines, cloud-ready FastAPI services, and data-driven intelligence solutions.",
     avatar: "abhay-avatar.jpg",
-    coverBadge: "Open for AI/ML Roles & Software Engineering Opportunities",
+    coverBadge: "Open to AI/ML, Data Science & Cloud Engineering Opportunities",
     email: "workwithabhay3006@gmail.com",
     phone: "+91 7411202198",
     location: "Bengaluru, India",
